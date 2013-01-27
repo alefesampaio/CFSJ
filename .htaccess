@@ -1,0 +1,39 @@
+Options -Indexes 
+#Options +FollowSymlinks 
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-e
+
+RewriteRule ^userEdit/([0-9]+)/?$ userEdit.php?id=$1
+RewriteRule ^caratulaEdit/([0-9]+)/?$ caratulaEdit.php?id=$1
+RewriteRule ^userList/criterio/([a-zA-Z0-9_-]+)/?$ userList.php?criterio=$1
+RewriteRule ^historialCaratulas/([a-zA-Z0-9_-]+)/?$ historialCaratulas.php?act=$1
+RewriteRule ^historialCaratulas/listar/([a-zA-Z0-9_-]+)/?$ historialCaratulas.php?act=listar&criterio=$1
+RewriteRule ^historialCaratulas/editar/([0-9]+)/?$ historialCaratulas.php?act=editar&id=$1
+RewriteRule ^historialCaratulas/imprimir/([0-9]+)/?$ historialCaratulas.php?act=imprimir&id=$1
+RewriteRule ^historialCaratulas/listar/eliminar/([0-9]+)/?$ historialCaratulas.php?act=listar&op=eliminar&id=$1
+RewriteRule ^detalleEstadoCuenta/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+)/?$ detalleEstadoCuenta.php?idOS=$1&idPlan=$2&q=$3&m=$4&a=$5&criterio=$6
+RewriteRule ^detalleEstadoCuenta/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/?$ detalleEstadoCuenta.php?idOS=$1&idPlan=$2&q=$3&m=$4&a=$5
+RewriteRule ^recovery/([a-zA-Z0-9_-]+)/?$ recovery.php?codigo=$1
+
+
+
+RewriteRule ^estadocuenta/([a-zA-Z0-9_-]+)/?$ estadocuenta.php?act=$1
+RewriteRule ^userEdit/eliminar/([0-9]+)?$ userEdit.php?id=$1&eliminar=true
+RewriteRule ^main/([0-9]+)/?$ main.php?s=$1
+RewriteRule ^userList/([0-9]+)/?$ userList.php?page=$1
+
+#RewriteRule ^login/logout/?$ login.php?act=logout
+
+#Todo lo que sea un archivo y no un directorio, lo acortamos
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+
+#RewriteRule ^(.+)\.htm$ http://www.colfasanjuan.com.ar/admin/$1.php [R,NC] 
+
+#   redirigir al subdominio www si no se especifica
+RewriteCond %{HTTP_HOST}        ^www\.([^\.]+\.[^\.]+)$ [NC]
+RewriteRule ^_([^/]+)/          http://$1.%1/ [L,R=301]
+

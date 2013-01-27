@@ -1,0 +1,19 @@
+[27-Sep-2012 02:20:03 UTC] PHP Fatal error:  Call to a member function getDenominacion() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 78
+[27-Sep-2012 02:20:11 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:20:14 UTC] PHP Fatal error:  Call to a member function getDenominacion() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 78
+[27-Sep-2012 02:20:17 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:21:16 UTC] PHP Parse error:  syntax error, unexpected T_REQUIRE_ONCE in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 2
+[27-Sep-2012 02:21:20 UTC] PHP Parse error:  syntax error, unexpected T_REQUIRE_ONCE in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 2
+[27-Sep-2012 02:21:32 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:23:44 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:23:46 UTC] PHP Fatal error:  Call to a member function getDenominacion() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 78
+[27-Sep-2012 02:23:50 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:25:14 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:25:18 UTC] PHP Fatal error:  Call to a member function getDenominacion() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 78
+[27-Sep-2012 02:25:19 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:25:20 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 02:27:20 UTC] PHP Fatal error:  Call to a member function getDenominacion() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 78
+[27-Sep-2012 02:27:25 UTC] PHP Fatal error:  Call to a member function getRazonSocial() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 80
+[27-Sep-2012 14:28:47 UTC] PHP Fatal error:  Call to undefined method farmacia::getFantasia() in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 79
+[27-Sep-2012 14:28:58 UTC] PHP Fatal error:  Call to undefined method farmacia::getFantasia() in /home3/colfa/public_html/admin/Auditoria/movimientosDrogueria.php on line 79
+[27-Sep-2012 14:31:04 UTC] PHP Fatal error:  Call to a member function getDenominacion() on a non-object in /home3/colfa/public_html/admin/Auditoria/movimientosFarmacia.php on line 85
