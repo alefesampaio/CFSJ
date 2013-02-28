@@ -1,0 +1,8 @@
+.project
+olapic/development.mode
+.DS_Store
+/nbproject/private/
+*.swp
+sftp-config.json
+db.php
+DAL/config.php
