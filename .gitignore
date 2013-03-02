@@ -6,3 +6,9 @@ olapic/development.mode
 sftp-config.json
 db.php
 DAL/config.php
+files/
+Auditoria/files/
+Auditoria/img/
+images/
+imagenes/
+nbproject/
