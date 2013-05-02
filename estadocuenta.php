@@ -7,7 +7,7 @@
     <div class="subtit2">Listado</div>
     <?
     require_once 'funciones/functions.php';
-    $criterio = "operacion";
+    $criterio = "anio desc, mes desc, operacion, obrasocial desc, quincena asc";
     $listado = managerCuentaCorriente::obtenerTodos2($criterio, $userAuth->Farmacia->getIdFarmacia());
     ?>
     <div id="optionBar" class="ui-widget-header ui-corner-all">
@@ -35,77 +35,78 @@
                     <td>Liquidación</td>  
 
                 </tr></thead>
-            <tbody>
-                <?
-                $array = meses();
-                
-                for ($i = 0; $i < count($listado); $i++) {
-                    $mes = $array[$listado[$i]->getMes()];
-                    $quincena = (isset($listado[$i]->Unidad)) ? $listado[$i]->Unidad->getDetalle() : "";
-                    $periodo = "$quincena de $mes de " . $listado[$i]->getAnio();
-                    if ($listado[$i] == $listado[0]) {
-                        $saldoAc = $listado[$i]->getSaldo();
-                    } else {
-                        $saldoAc = (double) $listado[$i - 1]->getSaldo() + $listado[$i]->getSaldo();
-                    }
-                    switch ($listado[$i]->getConfirmado()) {
-                        case 1:
-                            $con = "icon_accept.png";
-                            $t2 = "Presentado";
-                            break;
-                        case 2:
-                            $con = "icon_error.png";
-                            $t2 = "Rechazado";
-                            break;
-                        default:
-                            $con = "icon_warning2.png";
-                            $t2 = "No presentado";
-                            break;
-                    }
+                <tbody>
+                    <?
+                    $array = meses();
+                    if(!empty($listado)){
+                        for ($i = 0; $i < count($listado); $i++) {
+                            $mes = $array[$listado[$i]->getMes()];
+                            $quincena = (isset($listado[$i]->Unidad)) ? $listado[$i]->Unidad->getDetalle() : "";
+                            $periodo = "$quincena de $mes de " . $listado[$i]->getAnio();
+                            if ($listado[$i] == $listado[0]) {
+                                $saldoAc = $listado[$i]->getSaldo();
+                            } else {
+                                $saldoAc = (double) $listado[$i - 1]->getSaldo() + $listado[$i]->getSaldo();
+                            }
+                            switch ($listado[$i]->getConfirmado()) {
+                                case 1:
+                                $con = "icon_accept.png";
+                                $t2 = "Presentado";
+                                break;
+                                case 2:
+                                $con = "icon_error.png";
+                                $t2 = "Rechazado";
+                                break;
+                                default:
+                                $con = "icon_warning2.png";
+                                $t2 = "No presentado";
+                                break;
+                            }
 
-                    if ($listado[$i]->getRecibido() == 1) {
-                        $rec = "icon_accept.png";
-                        $t1 = "Recibido";
-                    } else {
-                        $rec = "icon_warning2.png";
-                        $t1 = "No recibido";
-                    }
-                    if ($listado[$i]->getCobrado() == 1) {
-                        $liq = "icon_accept.png";
-                        $t3 = "Liquidado";
-                    } else {
-                        $liq = "icon_warning2.png";
-                        $t3 = "No liquidado";
-                    }
-                    $obso = (!empty($listado[$i]->ObraSocial)) ? $listado[$i]->ObraSocial->getDenominacion() : "";
-                    $plan = (!empty($listado[$i]->Plan)) ? $listado[$i]->Plan->getDescripcion() : "";
+                            if ($listado[$i]->getRecibido() == 1) {
+                                $rec = "icon_accept.png";
+                                $t1 = "Recibido";
+                            } else {
+                                $rec = "icon_warning2.png";
+                                $t1 = "No recibido";
+                            }
+                            if ($listado[$i]->getCobrado() == 1) {
+                                $liq = "icon_accept.png";
+                                $t3 = "Liquidado";
+                            } else {
+                                $liq = "icon_warning2.png";
+                                $t3 = "No liquidado";
+                            }
+                            $obso = (!empty($listado[$i]->ObraSocial)) ? $listado[$i]->ObraSocial->getDenominacion() : "";
+                            $plan = (!empty($listado[$i]->Plan)) ? $listado[$i]->Plan->getDescripcion() : "";
 
-                    echo "<tr>
-		<td align='center'>" . $quincena . "</td>
-                <td align='center'>" . $mes . "</td>
-                 <td align='center'>" . $listado[$i]->getAnio() . "</td>   
-		<td align='center'>" . $obso . "</td>
-		<td align='center'>" . $plan . "</td>
-		<td align='center'>" . $listado[$i]->getFacturado() . "</td>
-		<td align='center'>" . $listado[$i]->getLiquidado() . "</td>
-		<td align='center'>" . $listado[$i]->getSaldo() . "</td>
-		<td align='center'>";
-                    if ($listado[$i]->getCobrado())
-                        echo "<a href='detalleEstadoCuenta/" . $listado[$i]->getObraSocial()->getIdObraSocial() . "/"
-                        . $listado[$i]->getPlan()->getIdPlan() . "/" . $listado[$i]->getUnidad()->getIdUnidad() . "/" . $listado[$i]->getMes() . "/"
-                        . $listado[$i]->getAnio() . "'  class='here'><div class='details' title='Ver detalle'></div></a>";
-                    echo "</td>
-		<td align='center'><img src='images/$rec' title='$t1' alt='".$listado[$i]->getRecibido()."' /></td>
-		<td align='center'><img src='images/$con' title='$t2' alt='".$listado[$i]->getConfirmado()."' /></td>
-		<td align='center'><img src='images/$liq' title='$t3' alt='".$listado[$i]->getCobrado()."' /></td>
-		</tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-<script type="text/javascript" src="js/right.js"></script>
-<script type="text/javascript">
+                            echo "<tr>
+                            <td align='center'>" . $quincena . "</td>
+                            <td align='center'>" . $mes . "</td>
+                            <td align='center'>" . $listado[$i]->getAnio() . "</td>   
+                            <td align='center'>" . $obso . "</td>
+                            <td align='center'>" . $plan . "</td>
+                            <td align='center'>" . $listado[$i]->getFacturado() . "</td>
+                            <td align='center'>" . $listado[$i]->getLiquidado() . "</td>
+                            <td align='center'>" . $listado[$i]->getSaldo() . "</td>
+                            <td align='center'>";
+                            if ($listado[$i]->getCobrado())
+                                echo "<a href='detalleEstadoCuenta/" . $listado[$i]->getObraSocial()->getIdObraSocial() . "/"
+                            . $listado[$i]->getPlan()->getIdPlan() . "/" . $listado[$i]->getUnidad()->getIdUnidad() . "/" . $listado[$i]->getMes() . "/"
+                            . $listado[$i]->getAnio() . "'  class='here'><div class='details' title='Ver detalle'></div></a>";
+                            echo "</td>
+                            <td align='center'><img src='images/$rec' title='$t1' alt='".$listado[$i]->getRecibido()."' /></td>
+                            <td align='center'><img src='images/$con' title='$t2' alt='".$listado[$i]->getConfirmado()."' /></td>
+                            <td align='center'><img src='images/$liq' title='$t3' alt='".$listado[$i]->getCobrado()."' /></td>
+                            </tr>";
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" src="js/right.js"></script>
+        <script type="text/javascript">
         $(".botonExcel").click(function(event) {
             $("#datos_a_enviar").val( $("<div>").append( $("#example").eq(0).clone()).html());
             $("#FormularioExportacion").submit();
@@ -116,11 +117,13 @@
         $("#lnkPrint").click(function(){
             $("#example").jqprint();
         });	
-</script>
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf-8">
-          oTable = $('#example').dataTable({
+        </script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        oTable = $('#example').dataTable({
             "bJQueryUI": true,
+            // "bSort": true,
+            "aaSorting": [[ 2, "desc"]],
             "oLanguage": {
                 "sLengthMenu": "Mostrar _MENU_ registros por página.",
                 "sZeroRecords": "No se encontraron registros.",
@@ -139,4 +142,4 @@
             },
             "sPaginationType": "full_numbers"
         });
-</script>
+        </script>

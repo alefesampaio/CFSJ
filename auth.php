@@ -11,7 +11,7 @@ header("Content-Type: text/html; charset=utf-8");
 
 if ((!isset($_SESSION['colfasj_id']) || $_SESSION['colfasj_id'] == "") && (!$_COOKIE["colfasj_key"] || $_COOKIE["colfasj_key"] == "")) {
     header("Location: login.php?act=logout");
-    exit();
+    exit;
 } else {
     if (isset($_COOKIE["colfasj_key"])) {
         $_SESSION["colfasj_id"] = $_COOKIE['colfasj_id'];
@@ -33,9 +33,9 @@ if ((!isset($_SESSION['colfasj_id']) || $_SESSION['colfasj_id'] == "") && (!$_CO
             exit();
         }
         if(!managerServicio::obtenerAutenticacionDeServicio($servicio, $userid) || $servicio!=1){
-        header("Location: login.php?act=logout");
-        exit();
-    }
+            header("Location: login.php?act=logout");
+            exit();
+        }
     }
     
 }

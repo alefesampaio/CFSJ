@@ -3,45 +3,45 @@
 <script type="text/javascript" src="js/right.js"></script>
 <script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
 <script type="text/javascript">
-    $(function(){	
+$(function(){	
         //$("#lnkPrint").button({ icons: {primary:'ui-icon-print'}});  
         $("#lnkPrint").click(function(){
             $("div.subtit2").hide();
             $("div.imprimir").hide();
             $("#goBack").hide();
             $("#main2").jqprint();
-        
+            
         })	  
     })
 </script>
 <link rel="stylesheet" href="css/demo_table_jui.css" />
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-        oTable = $('#example').dataTable({
-            "bJQueryUI": true,
-            "sScrollX": "100%",
-            "sScrollXInner": "110%",
-            "bScrollCollapse": true,
-            "oLanguage": {
-                "sLengthMenu": "Mostrar _MENU_ registros por página.",
-                "sZeroRecords": "No se encontraron registros.",
-                "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                "sSearch": "Buscar",
-                "sFirst" : "Primera",
-                "sPageFirst" : "Primera",
-                "sLast" : "Última",
-                "sNext" : "Siguiente",
-                "sPageNextDisabled" : "Siguiente",
-                "sPagePrevDisabled" : "Anterior",
-                "sEmptyTable" : "No se encontraron resultados.",
-                "sPrevious" : "Anterior"
-            },
-            "sPaginationType": "full_numbers"
-        });
-    } );
+$(document).ready(function() {
+    oTable = $('#example').dataTable({
+        "bJQueryUI": true,
+        "sScrollX": "100%",
+        "sScrollXInner": "110%",
+        "bScrollCollapse": true,
+        "oLanguage": {
+            "sLengthMenu": "Mostrar _MENU_ registros por página.",
+            "sZeroRecords": "No se encontraron registros.",
+            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+            "sSearch": "Buscar",
+            "sFirst" : "Primera",
+            "sPageFirst" : "Primera",
+            "sLast" : "Última",
+            "sNext" : "Siguiente",
+            "sPageNextDisabled" : "Siguiente",
+            "sPagePrevDisabled" : "Anterior",
+            "sEmptyTable" : "No se encontraron resultados.",
+            "sPrevious" : "Anterior"
+        },
+        "sPaginationType": "full_numbers"
+    });
+} );
 </script>
 <?
 require "BLL/managerFactura.class.php";
@@ -105,49 +105,49 @@ require_once 'funciones/functions.php';
 
                     </tr>
                 </thead><tbody>
-                    <?
-                    foreach ($listado as $f) {
-                        $fecha = new DateTime($f->getFecha());
-                        $array = managerFactura::meses();
-                        if ($f->getAgrupado() == 1) {
-                            $plan = "Todos";
-                            $folioDesde = "";
-                            $folioHasta = "";
-                            $edit = "<td></td>";
-                        } else {
-                            $plan = $f->Plan->getDescripcion();
-                            $folioDesde = $f->getFolioDesde();
-                            $folioHasta = $f->getFolioHasta();
-                            $edit = "<td align='center'><a href='caratulaEdit/" . $f->getIdFactura() . "' class='here'><div class='editar' title='Editar'></div></a></td>";
-                        }
-                        $mes = $array[$f->getMes()];
-                        $quincena = $f->Unidad->getDetalle();
-                        echo "<tr>
-		<td align='center'>" . $f->getCodigoBarra() . "</td>
-		<td align='center'>" . $fecha->format("d/m/Y H:i") . "</td>
-		<td align='center'>" . $f->Plan->ObraSocial->getDenominacion() . "</td>
-		<td align='center'>" . $plan . "</td>
-		<td align='center'>" . $folioDesde . "</td>
-		<td align='center'>" . $folioHasta . "</td>
-		<td align='center'>" . $f->getCantRecetas() . "</td>
-		<td align='center'>" . $f->getArancel() . "</td>
-		<td align='center'>" . $f->getArancelOS() . "</td>
-                <td align='center'>" . $f->getImporteBonificacion() . "</td>
-		<td align='center'>" . $quincena . "</td>
-		<td align='center'>" . $mes . "</td>
-		<td align='center'>" . $f->getAnio() . "</td>
-		<td align='center'>" . $f->getOperador() . "</td>";
-                        if ($f->getRecibido() == 0) {
-                            echo "$edit
-                      <td align='center'><a href='historialCaratulas/imprimir/" . $f->getCodigoBarra() . "' class='here' ><div class='print' title='Imprimir' ></div></a></td>
-		      <td align='center'><a href='historialCaratulas/listar/eliminar/" . $f->getCodigoBarra() . "' class='here'><div class='delete' title='Eliminar' ></div></a></td>";
-                        } else {
-                            echo "<td></td><td></td><td></td>";
-                        }
-                        echo "</tr>";
+                <?
+                foreach ($listado as $f) {
+                    $fecha = new DateTime($f->getFecha());
+                    $array = managerFactura::meses();
+                    if ($f->getAgrupado() == 1) {
+                        $plan = "Todos";
+                        $folioDesde = "";
+                        $folioHasta = "";
+                        $edit = "<td></td>";
+                    } else {
+                        $plan = $f->Plan->getDescripcion();
+                        $folioDesde = $f->getFolioDesde();
+                        $folioHasta = $f->getFolioHasta();
+                        $edit = "<td align='center'><a href='caratulaEdit/" . $f->getIdFactura() . "' class='here'><div class='editar' title='Editar'></div></a></td>";
                     }
-                    ?>
-                </tbody></table>
+                    $mes = $array[$f->getMes()];
+                    $quincena = $f->Unidad->getDetalle();
+                    echo "<tr>
+                    <td align='center'>" . $f->getCodigoBarra() . "</td>
+                    <td align='center'>" . $fecha->format("d/m/Y H:i") . "</td>
+                    <td align='center'>" . $f->Plan->ObraSocial->getDenominacion() . "</td>
+                    <td align='center'>" . $plan . "</td>
+                    <td align='center'>" . $folioDesde . "</td>
+                    <td align='center'>" . $folioHasta . "</td>
+                    <td align='center'>" . $f->getCantRecetas() . "</td>
+                    <td align='center'>" . $f->getArancel() . "</td>
+                    <td align='center'>" . $f->getArancelOS() . "</td>
+                    <td align='center'>" . $f->getImporteBonificacion() . "</td>
+                    <td align='center'>" . $quincena . "</td>
+                    <td align='center'>" . $mes . "</td>
+                    <td align='center'>" . $f->getAnio() . "</td>
+                    <td align='center'>" . $f->getOperador() . "</td>";
+                    if ($f->getRecibido() == 0) {
+                        echo "$edit
+                        <td align='center'><a href='historialCaratulas/imprimir/" . $f->getCodigoBarra() . "' class='here' ><div class='print' title='Imprimir' ></div></a></td>
+                        <td align='center'><a href='historialCaratulas/listar/eliminar/" . $f->getCodigoBarra() . "' class='here'><div class='delete' title='Eliminar' ></div></a></td>";
+                    } else {
+                        echo "<td></td><td></td><td></td>";
+                    }
+                    echo "</tr>";
+                }
+                ?>
+            </tbody></table>
 
 
             <?
@@ -209,122 +209,122 @@ require_once 'funciones/functions.php';
                                         <td class="data4" align="left"><? echo $c->Farmacia->getDirectorTecnico()->getNombreYApellido(); ?></td>
                                     </tr>
                                 </table></div></div>
-                        <br />
-                        <div class="linea"></div>
-                        <br />
-                        <table class="preliminar"  align="center" width="70%"  cellspacing="0" cellpadding="0" border="1">
-                            <tr>
-                                <td  class="subtit4">Fecha de Proceso:</td>
-                                <td class="data4" align="left"><? echo $fechaProceso->format("d/m/Y H:i"); ?></td>
-                            </tr>
-                            <tr>
-                                <td class="subtit4">Período:</td>
-                                <td  class="data4" align="left"><? echo $periodo; ?></td>
-                            </tr>
-                            <tr>
-                                <td  class="subtit4">Obra Social:</td>
-                                <td class="data4"  align="left"><? echo $c->Plan->ObraSocial->getDenominacion(); ?>
-                                </td>
-                            </tr>
+                                <br />
+                                <div class="linea"></div>
+                                <br />
+                                <table class="preliminar"  align="center" width="70%"  cellspacing="0" cellpadding="0" border="1">
+                                    <tr>
+                                        <td  class="subtit4">Fecha de Proceso:</td>
+                                        <td class="data4" align="left"><? echo $fechaProceso->format("d/m/Y H:i"); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subtit4">Período:</td>
+                                        <td  class="data4" align="left"><? echo $periodo; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td  class="subtit4">Obra Social:</td>
+                                        <td class="data4"  align="left"><? echo $c->Plan->ObraSocial->getDenominacion(); ?>
+                                        </td>
+                                    </tr>
 
-                <? if (count($caratulas) == 1) { ?>
-                                <tr>
-                                    <td class="subtit4">Plan:</td>
-                                    <td  class="data4"  align="left"><? echo $c->Plan->getDescripcion(); ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="subtit4">Folio desde:</td>
-                                    <td  class="data4" align="left"><? echo $c->getFolioDesde(); ?></td>
-                                </tr>
-                                <tr>
-                                    <td class="subtit4">Folio hasta:</td>
-                                    <td  class="data4" align="left"><? echo $c->getFolioHasta(); ?></td>
-                                </tr></table>
-                <? } else {
-                    echo "</table>"; ?>
+                                    <? if (count($caratulas) == 1) { ?>
+                                    <tr>
+                                        <td class="subtit4">Plan:</td>
+                                        <td  class="data4"  align="left"><? echo $c->Plan->getDescripcion(); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subtit4">Folio desde:</td>
+                                        <td  class="data4" align="left"><? echo $c->getFolioDesde(); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subtit4">Folio hasta:</td>
+                                        <td  class="data4" align="left"><? echo $c->getFolioHasta(); ?></td>
+                                    </tr></table>
+                                    <? } else {
+                                        echo "</table>"; ?>
 
-                            <br />
-                            <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
-                                <tr>
-                                    <td align="center" class="subtit4">Plan:</td>
-                                    <td align="center" class="subtit4">Cantidad de recetas:</td>
-                                    <td align="center" class="subtit4">Folio desde:</td>
-                                    <td align="center" class="subtit4">Folio hasta:</td>
-                                    <td align="center" class="subtit4">Importe total:</td>
-                                    <td align="center" class="subtit4">A cargo entidad:</td>
-                                </tr>
-                                <?
-                                foreach ($caratulas as $c) {
-                                    echo "<tr>
-                        <td align='center'  class='data4'>" . $c->Plan->getDescripcion() . "</td>
-                        <td align='center'  class='data4'>" . $c->getCantRecetas() . "</td>
-                        <td align='center'  class='data4'>" . $c->getFolioDesde() . "</td>
-                        <td align='center'  class='data4'>" . $c->getFolioHasta() . "</td>
-                        <td align='center'  class='data4'>$" . $c->getArancel() . "</td>
-                        <td align='center'  class='data4'>$" . $c->getArancelOS() . "</td>
-                    </tr>";
-                                }
-                                ?>
-                            </table>
-                <? } ?>
-
-
+                                        <br />
+                                        <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
+                                            <tr>
+                                                <td align="center" class="subtit4">Plan:</td>
+                                                <td align="center" class="subtit4">Cantidad de recetas:</td>
+                                                <td align="center" class="subtit4">Folio desde:</td>
+                                                <td align="center" class="subtit4">Folio hasta:</td>
+                                                <td align="center" class="subtit4">Importe total:</td>
+                                                <td align="center" class="subtit4">A cargo entidad:</td>
+                                            </tr>
+                                            <?
+                                            foreach ($caratulas as $c) {
+                                                echo "<tr>
+                                                <td align='center'  class='data4'>" . $c->Plan->getDescripcion() . "</td>
+                                                <td align='center'  class='data4'>" . $c->getCantRecetas() . "</td>
+                                                <td align='center'  class='data4'>" . $c->getFolioDesde() . "</td>
+                                                <td align='center'  class='data4'>" . $c->getFolioHasta() . "</td>
+                                                <td align='center'  class='data4'>$" . $c->getArancel() . "</td>
+                                                <td align='center'  class='data4'>$" . $c->getArancelOS() . "</td>
+                                                </tr>";
+                                            }
+                                            ?>
+                                        </table>
+                                        <? } ?>
 
 
-                        <br />
+
+
+                                        <br />
                         <!--<div class="separador"></div>
-                        -->
-                        <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
-                            <tr>
-                                <td align="center" class="subtit4">Cantidad de recetas:</td>
-                                <td align="center" class="subtit4">Importe Total:</td>
-                                <td align="center" class="subtit4">A cargo entidad:</td>
-                <? if ($c->getPorcentajeBonificacion() != 0)
-                    echo "<td align='center' class='subtit4'>Porcentaje de bonificación:</td>"; ?>
-                                <td align="center" class="subtit4">Neto a cobrar:</td>
+                    -->
+                    <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
+                        <tr>
+                            <td align="center" class="subtit4">Cantidad de recetas:</td>
+                            <td align="center" class="subtit4">Importe Total:</td>
+                            <td align="center" class="subtit4">A cargo entidad:</td>
+                            <? if ($c->getPorcentajeBonificacion() != 0)
+                            echo "<td align='center' class='subtit4'>Porcentaje de bonificación:</td>"; ?>
+                            <td align="center" class="subtit4">Neto a cobrar:</td>
 
-                            </tr>
-                            <tr>
+                        </tr>
+                        <tr>
 
-                                <td align="center"  class="data4"><? echo $totalRecetas; ?></td>
-                                <td align="center"  class="data4">$<? echo $importe; ?></td>
-                                <td align="center"  class="data4">$<? echo $cargo; ?></td>
-                <? if ($c->getPorcentajeBonificacion() != 0)
-                    echo "<td align='center' class='subtit4'>%" . $porcBon . "</td>"; ?>  
-                                <td align="center"  class="data4">$<? echo $neto; ?></td>
+                            <td align="center"  class="data4"><? echo $totalRecetas; ?></td>
+                            <td align="center"  class="data4">$<? echo $importe; ?></td>
+                            <td align="center"  class="data4">$<? echo $cargo; ?></td>
+                            <? if ($c->getPorcentajeBonificacion() != 0)
+                            echo "<td align='center' class='subtit4'>%" . $porcBon . "</td>"; ?>  
+                            <td align="center"  class="data4">$<? echo $neto; ?></td>
 
-                            </tr>
-                        </table>
-                        <br	 /><br	 />
-                        <div class="subtit3">Confirmación de lote</div>    
-                        <br />
-                        <div class="separador2"></div>
-                        <table width="100%" border="0" cellspacing="2" cellpadding="2">
-                            <tr>
-                                <td width="33%" align="center" class="subtit4"><span>Sello</span></td>
-                                <td width="33%" align="center" class="subtit4"><span>Firma</span></td>
-                                <td width="34%" align="center" class="subtit4"><span>Aclaración</span></td>
-                            </tr>
-                        </table>
-                        <br />
-                        <br />
-                        <table align="center" width="70%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td align="right" width="72%"><img src="codigoBarra.php?NUM=<? echo $barra ?>&TYP=Code128&IMG=png"/></td>
-                            </tr>
+                        </tr>
+                    </table>
+                    <br	 /><br	 />
+                    <div class="subtit3">Confirmación de lote</div>    
+                    <br />
+                    <div class="separador2"></div>
+                    <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                        <tr>
+                            <td width="33%" align="center" class="subtit4"><span>Sello</span></td>
+                            <td width="33%" align="center" class="subtit4"><span>Firma</span></td>
+                            <td width="34%" align="center" class="subtit4"><span>Aclaración</span></td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    <table align="center" width="70%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="right" width="72%"><img src="codigoBarra.php?NUM=<? echo $barra ?>&TYP=Code128&IMG=png"/></td>
+                        </tr>
 
-                        </table>
-                        <br /><p align='center'><a href='historialCaratulas/listar' class='ui-jQuery here' id="goBack">« Volver</a></p>
-                        <br />	<?
-            }else {
-                echo "<div class='errorlist'>No puedes reimprimir esta carátula.</div>";
+                    </table>
+                    <br /><p align='center'><a href='historialCaratulas/listar' class='ui-jQuery here' id="goBack">« Volver</a></p>
+                    <br />	<?
+                }else {
+                    echo "<div class='errorlist'>No puedes reimprimir esta carátula.</div>";
+                }
+            } else {
+                echo "<div class='errorlist'>La carátula que intentas imprimir, no existe.</div>";
             }
         } else {
-            echo "<div class='errorlist'>La carátula que intentas imprimir, no existe.</div>";
+            echo "<div class='errorlist'> Debes seleccionar una carátula.</div>";
         }
-    } else {
-        echo "<div class='errorlist'> Debes seleccionar una carátula.</div>";
     }
-}
-?>
-    </div> 
+    ?>
+</div> 

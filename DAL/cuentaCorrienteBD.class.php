@@ -16,14 +16,16 @@ class cuentaCorrienteBD {
     public function showAll2($criterio, $idFar) {
 
         $db = Db::getInstance();
-        $consulta = $db->query("select c.operacion,c.codigofarmacia,c.obra_social,o.denomina as obrasocial,c.quincena,u.detalle as unidad,c.mes,c.anio,c.facturado,c.imputacion,c.detalle,"
+        $sql = "select c.operacion,c.codigofarmacia,c.obra_social,o.denomina as obrasocial,c.quincena,u.detalle as unidad,c.mes,c.anio,c.facturado,c.imputacion,c.detalle,"
                 . "c.liquidado,c.recibido,c.plan,p.detalle as dplan,c.confirmado,c.cobrado "
                 ." from ctacte as c "
                 ." inner join unidadperiodo as u on u.idUnidad = c.quincena "
                 ." inner join farmacias as f on f.codigo = c.codigofarmacia "
                 ." inner join obrasocial as o on o.codigo = c.obra_social "
                 ." inner join planes_os as p on p.plan = c.plan "
-                . " where codigofarmacia='" . $db->prepare($idFar) . "' order by $criterio");
+                ." where codigofarmacia='" . $db->prepare($idFar) . "' order by $criterio";
+        
+        $consulta = $db->query($sql);        
         if ($db->num_rows($consulta) == 0) return false;
         $lista = array();
         require_once 'Business/unidad.class.php';
