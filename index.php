@@ -66,7 +66,7 @@
                     <h3><a href="#">Estado de cuenta</a></h3>
                     <div>
                         <ul id="menu7">
-                            <li><a href="estadocuenta.php?act=listar" target="main">Movimientos</a></li>
+                            <li><a href="estadocuenta/listar" target="main">Movimientos</a></li>
                         </ul>
                     </div> 
                     <? if ($userAuth->nivelAdmin->getIdAdmin() > 2) { ?>        
