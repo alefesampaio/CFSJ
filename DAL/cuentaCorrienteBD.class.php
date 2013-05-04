@@ -17,7 +17,7 @@ class cuentaCorrienteBD {
 
         $db = Db::getInstance();
         $sql = "select c.operacion,c.codigofarmacia,c.obra_social,o.denomina as obrasocial,c.quincena,u.detalle as unidad,c.mes,c.anio,c.facturado,c.imputacion,c.detalle,"
-                . "c.liquidado,c.recibido,c.plan,p.detalle as dplan,c.confirmado,c.cobrado "
+                . "c.liquidado,c.recibido,c.plan,p.detalle as dplan,c.confirmado,c.cobrado,c.rendicion "
                 ." from ctacte as c "
                 ." inner join unidadperiodo as u on u.idUnidad = c.quincena "
                 ." inner join farmacias as f on f.codigo = c.codigofarmacia "
@@ -41,6 +41,7 @@ class cuentaCorrienteBD {
                 $new->setUnidad($u);
                 $new->setMes($r['mes']);
                 $new->setAnio($r['anio']);
+                $new->setNroRendicion($r['rendicion']);
                 $f = new farmacia();
                 $f->setIdFarmacia($r['codigofarmacia']);
                 $new->setFarmacia($f); 

@@ -91,9 +91,7 @@
                             <td align='center'>" . $listado[$i]->getSaldo() . "</td>
                             <td align='center'>";
                             if ($listado[$i]->getCobrado())
-                                echo "<a href='detalleEstadoCuenta/" . $listado[$i]->getObraSocial()->getIdObraSocial() . "/"
-                            . $listado[$i]->getPlan()->getIdPlan() . "/" . $listado[$i]->getUnidad()->getIdUnidad() . "/" . $listado[$i]->getMes() . "/"
-                            . $listado[$i]->getAnio() . "'  class='here'><div class='details' title='Ver detalle'></div></a>";
+                                echo "<a href='detalleEstadoCuenta/" . $listado[$i]->getNroRendicion() . "'  class='here'><div class='details' title='Ver detalle'></div></a>";
                             echo "</td>
                             <td align='center'><img src='images/$rec' title='$t1' alt='".$listado[$i]->getRecibido()."' /></td>
                             <td align='center'><img src='images/$con' title='$t2' alt='".$listado[$i]->getConfirmado()."' /></td>

@@ -12,8 +12,7 @@ RewriteRule ^historialCaratulas/listar/([a-zA-Z0-9_-]+)/?$ historialCaratulas.ph
 RewriteRule ^historialCaratulas/editar/([0-9]+)/?$ historialCaratulas.php?act=editar&id=$1
 RewriteRule ^historialCaratulas/imprimir/([0-9]+)/?$ historialCaratulas.php?act=imprimir&id=$1
 RewriteRule ^historialCaratulas/listar/eliminar/([0-9]+)/?$ historialCaratulas.php?act=listar&op=eliminar&id=$1
-RewriteRule ^detalleEstadoCuenta/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+)/?$ detalleEstadoCuenta.php?idOS=$1&idPlan=$2&q=$3&m=$4&a=$5&criterio=$6
-RewriteRule ^detalleEstadoCuenta/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/?$ detalleEstadoCuenta.php?idOS=$1&idPlan=$2&q=$3&m=$4&a=$5
+RewriteRule ^detalleEstadoCuenta/([0-9]+)/?$ detalleEstadoCuenta.php?rendicion=$1
 RewriteRule ^recovery/([a-zA-Z0-9_-]+)/?$ recovery.php?codigo=$1
 
 

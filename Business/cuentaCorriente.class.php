@@ -27,8 +27,15 @@ class cuentaCorriente {
     private $confirmado;
     private $cobrado;
     private $Detalle;
+    private $nroRendicion;
+
+    public function getNroRendicion(){
+        return $this->nroRendicion;
+    }
     
-    
+    public function setNroRendicion($nroRendicion) {
+        $this->nroRendicion = $nroRendicion;
+    }    
     
     public function getCobrado() {
         return $this->cobrado;
@@ -151,12 +158,12 @@ class cuentaCorriente {
         $this->confirmado = $confirmado;
     }
     public function getSaldo(){
-       return $this->getFacturado()-$this->getLiquidado();
-        
-    }
-    
+     return $this->getFacturado()-$this->getLiquidado();
+     
+ }
+ 
 
-    
+ 
 }
 
 ?>
