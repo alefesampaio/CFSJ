@@ -1,5 +1,5 @@
-<? require "auth.php";
-require 'BLL/managerLiquidacion.class.php'; ?>
+<? require_once "auth.php";
+require_once 'BLL/managerLiquidacion.class.php'; ?>
 <script type="text/javascript" src="js/right.js"></script>
 <script type="text/javascript">
 $(".botonExcel").click(function() {
@@ -11,8 +11,6 @@ $("#lnkPrint").click(function(){
 });	
 
 </script>
-<link rel="stylesheet" href="css/demo_table_jui.css" />
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
     oTable = $('#example').dataTable({
@@ -38,7 +36,7 @@ $(document).ready(function() {
     });
 } );
 </script>
-<div id="loaderDiv" class="hide"></div>
+
 <div class="ui-widget-header ui-corner-all subtit">Estado de cuenta</div>
 <!-- Contenido -->
 <div id="main2">

@@ -10,8 +10,7 @@ $("#usuario").focus();
     <?
     require_once 'funciones/functions.php';
     require "BLL/managerFactura.class.php" ?>
-    <div id="loaderDiv" class="hide"></div>
-    <div class="ui-widget-header ui-corner-all subtit">Carátulas</div>
+        <div class="ui-widget-header ui-corner-all subtit">Carátulas</div>
     <div id="main2">
         <div class="subtit2">Editar</div>
         <?

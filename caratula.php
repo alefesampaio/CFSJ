@@ -1,8 +1,7 @@
 <? require "auth.php"; //ini_set("display_errors", 1);   ?>
-<script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
 <script type="text/javascript" src="js/caratula.js"></script>
 <script type="text/javascript" src="js/right.js"></script>
-<div id="loaderDiv" class="hide"></div>
+
 <div class="ui-widget-header ui-corner-all subtit">Carátulas</div>
 <div id="main2">
     <?

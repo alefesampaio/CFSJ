@@ -31,7 +31,7 @@ class ManagerUsuario {
 
     public static function obtenerTodos($criterio) {
         $udb = new usuarioBD();
-        return $udb->showUsers($criterio);
+        return $udb->showUsers2($criterio);
     }
 
     public static function obtenerUsuarioPorEmail($email) {

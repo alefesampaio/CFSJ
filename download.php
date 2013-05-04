@@ -1,6 +1,4 @@
 <? require "auth.php"; require_once 'funciones/functions.php';  ?>
-<link rel="stylesheet" href="css/demo_table_jui.css" />
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
         oTable = $('#example').dataTable({
@@ -30,7 +28,7 @@
         });
     } );
 </script>
-<div id="loaderDiv" class="hide"></div>
+
         <div class="ui-widget-header ui-corner-all subtit">Mis archivos</div>
             
 <div id="main2">

@@ -1,15 +1,14 @@
-<? require "auth.php"; ?>
-<script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
+<? require_once "auth.php"; ?>
 <script type="text/javascript" src="js/caratulaSumaria.js"></script>
 <script type="text/javascript" src="js/right.js"></script>
-<div id="loaderDiv" class="hide"></div>
+
 <div class="ui-widget-header ui-corner-all subtit">Carátulas</div>
 <div id="main2">
     <?
-    require 'BLL/managerFactura.class.php';
-    require 'BLL/managerPlan.class.php';
-    require 'funciones/functions.php';
-    require 'BLL/managerObraSocial.class.php';
+    require_once 'BLL/managerFactura.class.php';
+    require_once 'BLL/managerPlan.class.php';
+    require_once 'funciones/functions.php';
+    require_once 'BLL/managerObraSocial.class.php';
     a:
     if (isset($_SESSION['matricula']) && $_SESSION['matricula'] != "") {
 

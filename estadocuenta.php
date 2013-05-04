@@ -1,6 +1,4 @@
-<? require "auth.php"; require 'BLL/managerCuentaCorriente.class.php'; ?>
-<link rel="stylesheet" href="css/demo_table_jui.css" />
-<div id="loaderDiv" class="hide"></div>
+<? require_once "auth.php"; require_once 'BLL/managerCuentaCorriente.class.php'; ?>
 <div class="ui-widget-header ui-corner-all subtit">Estado de cuenta</div>
 <!-- Contenido -->
 <div id="main2">
@@ -9,6 +7,7 @@
     require_once 'funciones/functions.php';
     $criterio = "anio desc, mes desc, operacion, obrasocial desc, quincena asc";
     $listado = managerCuentaCorriente::obtenerTodos2($criterio, $userAuth->Farmacia->getIdFarmacia());
+
     ?>
     <div id="optionBar" class="ui-widget-header ui-corner-all">
         <form action="exportarExcel.php" method="post" target="_blank" id="FormularioExportacion">
@@ -116,7 +115,7 @@
             $("#example").jqprint();
         });	
         </script>
-        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        
         <script type="text/javascript" charset="utf-8">
         oTable = $('#example').dataTable({
             "bJQueryUI": true,

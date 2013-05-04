@@ -16,15 +16,30 @@ class cuentaCorrienteBD {
     public function showAll2($criterio, $idFar) {
 
         $db = Db::getInstance();
-        $sql = "select c.operacion,c.codigofarmacia,c.obra_social,o.denomina as obrasocial,c.quincena,u.detalle as unidad,c.mes,c.anio,c.facturado,c.imputacion,c.detalle,"
-                . "c.liquidado,c.recibido,c.plan,p.detalle as dplan,c.confirmado,c.cobrado,c.rendicion "
-                ." from ctacte as c "
-                ." inner join unidadperiodo as u on u.idUnidad = c.quincena "
-                ." inner join farmacias as f on f.codigo = c.codigofarmacia "
-                ." inner join obrasocial as o on o.codigo = c.obra_social "
-                ." inner join planes_os as p on p.plan = c.plan "
-                ." where codigofarmacia='" . $db->prepare($idFar) . "' order by $criterio";
-        
+        $sql = "SELECT  c.operacion,
+                        c.codigofarmacia,
+                        c.obra_social,
+                        o.denomina as obrasocial,
+                        c.quincena,
+                        u.detalle as unidad,
+                        c.mes,
+                        c.anio,
+                        c.facturado,
+                        c.imputacion,
+                        c.detalle,
+                        c.liquidado,
+                        c.recibido,
+                        c.plan,
+                        p.detalle as dplan,
+                        c.confirmado,
+                        c.cobrado,
+                        c.rendicion 
+                FROM ctacte AS c 
+                INNER JOIN unidadperiodo AS u ON u.idUnidad = c.quincena 
+                INNER JOIN farmacias as f ON f.codigo = c.codigofarmacia 
+                INNER JOIN obrasocial as o ON o.codigo = c.obra_social 
+                INNER JOIN planes_os as p ON p.plan = c.plan 
+                WHERE codigofarmacia='" . $db->prepare($idFar) . "' ORDER BY $criterio";        
         $consulta = $db->query($sql);        
         if ($db->num_rows($consulta) == 0) return false;
         $lista = array();

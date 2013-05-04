@@ -1,7 +1,5 @@
-<? require "auth.php";
-//ini_set("display_errors", 1); ?>
+<? require "auth.php"; //ini_set("display_errors", 1); ?>
 <script type="text/javascript" src="js/right.js"></script>
-<script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
 <script type="text/javascript">
 $(function(){	
         //$("#lnkPrint").button({ icons: {primary:'ui-icon-print'}});  
@@ -14,15 +12,13 @@ $(function(){
         })	  
     })
 </script>
-<link rel="stylesheet" href="css/demo_table_jui.css" />
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
     oTable = $('#example').dataTable({
         "bJQueryUI": true,
         "sScrollX": "100%",
         "sScrollXInner": "110%",
-        "bScrollCollapse": true,
+        "bScrollCollapse": false,
         "oLanguage": {
             "sLengthMenu": "Mostrar _MENU_ registros por página.",
             "sZeroRecords": "No se encontraron registros.",
@@ -44,10 +40,9 @@ $(document).ready(function() {
 } );
 </script>
 <?
-require "BLL/managerFactura.class.php";
+require_once "BLL/managerFactura.class.php";
 require_once 'funciones/functions.php';
 ?>
-<div id="loaderDiv" class="hide"></div>
 <div class="ui-widget-header ui-corner-all subtit">Carátulas</div>
 <div id="main2">
     <div class="subtit2">Listado</div>
