@@ -6,7 +6,12 @@
     <?
     require_once 'funciones/functions.php';
     $criterio = "anio desc, mes desc, operacion, obrasocial desc, quincena asc";
-    $listado = managerCuentaCorriente::obtenerTodos2($criterio, $userAuth->Farmacia->getIdFarmacia());
+    $liquidado = ((isset($_GET['act']) and $_GET['act'] == 'liquidacion')) ? true : false ;
+    $params = array(
+        'criterio' => $criterio,
+        'farmaciaId' => $userAuth->Farmacia->getIdFarmacia(),
+        'liquidado' => $liquidado );
+    $listado = managerCuentaCorriente::obtenerTodos2($params);
 
     ?>
     <div id="optionBar" class="ui-widget-header ui-corner-all">
@@ -90,7 +95,7 @@
                             <td align='center'>" . $listado[$i]->getSaldo() . "</td>
                             <td align='center'>";
                             if ($listado[$i]->getCobrado())
-                                echo "<a href='detalleEstadoCuenta/" . $listado[$i]->getNroRendicion() . "'  class='here'><div class='details' title='Ver detalle'></div></a>";
+                                echo "<a href='detalleEstadoCuenta.php?rendicion=" . $listado[$i]->getNroRendicion() . "'  class='here'><div class='details' title='Ver detalle'></div></a>";
                             echo "</td>
                             <td align='center'><img src='images/$rec' title='$t1' alt='".$listado[$i]->getRecibido()."' /></td>
                             <td align='center'><img src='images/$con' title='$t2' alt='".$listado[$i]->getConfirmado()."' /></td>

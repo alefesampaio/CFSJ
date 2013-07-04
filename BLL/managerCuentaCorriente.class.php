@@ -18,9 +18,9 @@ class managerCuentaCorriente {
         return $ccdb->showAll($criterio, $idFar);
     }
     
-    public static function obtenerTodos2($criterio, $idFar) {
+    public static function obtenerTodos2($params = array()) {
         $ccdb = new cuentaCorrienteBD();
-        return $ccdb->showAll2($criterio, $idFar);
+        return $ccdb->showAll2($params);
     }
 
     public static function obtenerTodosFiltro($criterio, $idFar, $periodo, $mes, $anio, $os, $plan) {

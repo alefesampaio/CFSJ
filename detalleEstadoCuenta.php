@@ -111,7 +111,7 @@ $(document).ready(function() {
         ?>	
 
 
-        <br /><p align='center'><a href='estadocuenta' class='ui-jQuery here'>« Volver</a></p>
+        <br /><p align='center'><a href='estadocuenta/liquidacion' class='ui-jQuery here'>« Volver</a></p>
 
 
     </div>

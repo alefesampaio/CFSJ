@@ -13,8 +13,9 @@ require 'Business/cuentaCorriente.class.php';
  */
 class cuentaCorrienteBD {
     
-    public function showAll2($criterio, $idFar) {
+    public function showAll2($params = array()) {
 
+        $where = ($params['liquidado']) ? ' AND c.cobrado = 1' : ''; 
         $db = Db::getInstance();
         $sql = "SELECT  c.operacion,
                         c.codigofarmacia,
@@ -39,7 +40,7 @@ class cuentaCorrienteBD {
                 INNER JOIN farmacias as f ON f.codigo = c.codigofarmacia 
                 INNER JOIN obrasocial as o ON o.codigo = c.obra_social 
                 INNER JOIN planes_os as p ON p.plan = c.plan 
-                WHERE codigofarmacia='" . $db->prepare($idFar) . "' ORDER BY $criterio";        
+                WHERE codigofarmacia='" . $db->prepare($params['farmaciaId']) . "' $where ORDER BY $params[criterio]";        
         $consulta = $db->query($sql);        
         if ($db->num_rows($consulta) == 0) return false;
         $lista = array();

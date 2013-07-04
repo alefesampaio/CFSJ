@@ -70,7 +70,8 @@
                 <h3><a href="#">Estado de cuenta</a></h3>
                 <div>
                     <ul id="menu7">
-                        <li><a href="estadocuenta.php?act=listar" target="main">Movimientos</a></li>
+                        <li><a href="estadocuenta.php" target="main">Movimiento</a></li>
+                        <li><a href="estadocuenta.php?act=liquidacion" target="main">Liquidado</a></li>
                     </ul>
                 </div> 
                 <? if ($userAuth->nivelAdmin->getIdAdmin() > 2) { ?>        
