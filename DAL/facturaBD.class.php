@@ -196,20 +196,20 @@ class facturaBD {
     }
 
     public function generateTInvoice($caratula) {
-
         $db = Db::getInstance();
         $rpta = false;
         try {
             $db->query("BEGIN");
-            $op1 = $db->query("insert into factura(farmacia,nombre,recetas,arancel,arancel_os," .
+            $sql1 = "insert into factura(farmacia,nombre,recetas,arancel,arancel_os," .
                     "obra_soc,quincena,mes,anio,folio1,folio2,plan,operador,fecha,origen,barra,bonificacion,importe_bonificacion,agrupado) " .
                     "values('" . $db->prepare($caratula->Farmacia->getIdFarmacia()) . "','" . $db->prepare($caratula->Farmacia->getRazonSocial()) . "'," .
                     "'" . $db->prepare($caratula->getCantRecetas()) . "','" . $db->prepare($caratula->getArancel()) . "','" . $db->prepare($caratula->getArancelOS()) . "'," .
                     "'" . $db->prepare($caratula->Plan->ObraSocial->getIdObraSocial()) . "','" . $db->prepare($caratula->Unidad->getIdUnidad()) . "','" . $db->prepare($caratula->getMes()) . "'," .
                     "'" . $db->prepare($caratula->getAnio()) . "','" . $db->prepare($caratula->getFolioDesde()) . "','" . $db->prepare($caratula->getFolioHasta()) . "'," .
                     "'" . $db->prepare($caratula->Plan->getIdPlan()) . "','" . $db->prepare(strtoupper($caratula->getOperador())) . "'," .
-                    "'" . $db->prepare($caratula->getFecha()) . "','" . $db->prepare($caratula->getOrigen()) . "','" . $db->prepare($caratula->getCodigoBarra()) . "',"
-                    . "'" . $db->prepare($caratula->getPorcentajeBonificacion()) . "','" . $db->prepare($caratula->getImporteBonificacion()) . "','" . $db->prepare($caratula->getAgrupado()) . "')");
+                    "'" . $db->prepare($caratula->getFecha()) . "','" . $db->prepare($caratula->getOrigen()) . "','" . $db->prepare($caratula->getCodigoBarra()) . "'," .
+                    $db->prepare($caratula->getPorcentajeBonificacion()) . ",'" . $db->prepare($caratula->getImporteBonificacion()) . "','" . $db->prepare($caratula->getAgrupado()) . "')";
+            $op1 = $db->query($sql1);
             $op2 = $db->query("update farmacias set barras='" . $db->prepare($caratula->Farmacia->getContadorBarra()) . "' where codigo='" . $db->prepare($caratula->Farmacia->getIdFarmacia()) . "'");
 
             if (!$op1 || !$op2) {

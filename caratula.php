@@ -1,4 +1,4 @@
-<? require "auth.php"; //ini_set("display_errors", 1);   ?>
+<? require "auth.php"; ini_set("display_errors", 1);   ?>
 <script type="text/javascript" src="js/caratula.js"></script>
 <script type="text/javascript" src="js/right.js"></script>
 
@@ -131,7 +131,7 @@
                 $cantRecetas = $_POST["cantRecetas"];
                 $importe = $_POST["importe"];
                 $cargoEntidad = $_POST["cargoEntidad"];
-                $bonificacion = isset($_POST['bonificacion']) ? $_POST['bonificacion'] : 0;
+                $bonificacion = !empty($_POST['bonificacion']) ? $_POST['bonificacion'] : 0.0;
                 $neto = $_POST['neto'];
                 $caratula = new factura();
                 $farmacia->setContadorBarra($last);
@@ -154,7 +154,7 @@
                 $caratula->setArancelOS($cargoEntidad);
                 $caratula->setImporteBonificacion($neto);
                 $caratula->setPorcentajeBonificacion($bonificacion);
-                //$caratula->setAgrupado(0);
+                $caratula->setAgrupado(0);
 
 
                 echo managerFactura::generarTCaratula($caratula);
@@ -185,265 +185,265 @@
                         </table></div></div>
 
 
-                <br />
-                <div class="linea"></div>
-                <br />
-                <table class="preliminar"  align="center" width="70%"  cellspacing="0" cellpadding="0" border="1">
-                    <tr>
-                        <td class="subtit4">Fecha de Proceso:</td>
-                        <td class="data4" align="left"><? echo date("d/m/Y H:i"); ?></td>
-                    </tr>
-                    <tr>
-                        <td class="subtit4">Período:</td>
-                        <td  class="data4" align="left"><? echo $periodo; ?></td>
-                    </tr>
-                    <tr>
-                        <td width="50%" class="subtit4">Obra Social:</td>
-                        <td width="50%"  class="data4" align="left"><? echo $plan->ObraSocial->getDenominacion(); ?>
-                        </td>
-                    </tr>
+                        <br />
+                        <div class="linea"></div>
+                        <br />
+                        <table class="preliminar"  align="center" width="70%"  cellspacing="0" cellpadding="0" border="1">
+                            <tr>
+                                <td class="subtit4">Fecha de Proceso:</td>
+                                <td class="data4" align="left"><? echo date("d/m/Y H:i"); ?></td>
+                            </tr>
+                            <tr>
+                                <td class="subtit4">Período:</td>
+                                <td  class="data4" align="left"><? echo $periodo; ?></td>
+                            </tr>
+                            <tr>
+                                <td width="50%" class="subtit4">Obra Social:</td>
+                                <td width="50%"  class="data4" align="left"><? echo $plan->ObraSocial->getDenominacion(); ?>
+                                </td>
+                            </tr>
 
-                    <tr>
-                        <td class="subtit4">Plan:</td>
-                        <td  class="data4" align="left"><? echo $plan->getDescripcion(); ?></td>
-                    </tr>
-                    <tr>
-                        <td class="subtit4">Folio desde:</td>
-                        <td  class="data4" align="left"><? echo $folioDesde; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="subtit4">Folio hasta:</td>
-                        <td  class="data4" align="left"><? echo $folioHasta; ?></td>
-                    </tr>
+                            <tr>
+                                <td class="subtit4">Plan:</td>
+                                <td  class="data4" align="left"><? echo $plan->getDescripcion(); ?></td>
+                            </tr>
+                            <tr>
+                                <td class="subtit4">Folio desde:</td>
+                                <td  class="data4" align="left"><? echo $folioDesde; ?></td>
+                            </tr>
+                            <tr>
+                                <td class="subtit4">Folio hasta:</td>
+                                <td  class="data4" align="left"><? echo $folioHasta; ?></td>
+                            </tr>
 
 
 
-                </table>
-                <br />
-                <br />
+                        </table>
+                        <br />
+                        <br />
                 <!--<div class="separador"></div>
-                -->
-                <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
-                    <tr>
-                        <td align="center" class="subtit4">Cantidad de recetas:</td>
-                        <td align="center" class="subtit4">Importe Total:</td>
-                        <td align="center" class="subtit4">A cargo entidad:</td>
-            <? if ($bonificacion != 0)
-                echo "<td align='center' class='subtit4'>Porcentaje de bonificacion:</td>"; ?>
-                        <td align="center" class="subtit4">Neto a cobrar:</td>
-                    </tr>
-                    <tr>
+            -->
+            <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
+                <tr>
+                    <td align="center" class="subtit4">Cantidad de recetas:</td>
+                    <td align="center" class="subtit4">Importe Total:</td>
+                    <td align="center" class="subtit4">A cargo entidad:</td>
+                    <? if ($bonificacion != 0)
+                    echo "<td align='center' class='subtit4'>Porcentaje de bonificacion:</td>"; ?>
+                    <td align="center" class="subtit4">Neto a cobrar:</td>
+                </tr>
+                <tr>
 
-                        <td align="center"  class="data4"><? echo $cantRecetas; ?></td>
-                        <td align="center"  class="data4">$<? echo $importe; ?></td>
-                        <td align="center"  class="data4">$<? echo $cargoEntidad; ?></td>
-                        <?
-                        if ($bonificacion != 0) {
-                            echo "<td align='center' class='subtit4'>%$bonificacion</td>";
-                        }
-                        ?>
+                    <td align="center"  class="data4"><? echo $cantRecetas; ?></td>
+                    <td align="center"  class="data4">$<? echo $importe; ?></td>
+                    <td align="center"  class="data4">$<? echo $cargoEntidad; ?></td>
+                    <?
+                    if ($bonificacion != 0) {
+                        echo "<td align='center' class='subtit4'>%$bonificacion</td>";
+                    }
+                    ?>
 
-                        <td align="center" class="subtit4">$<? echo $neto; ?></td>
-                    </tr>
-                </table>
-                <br	 /><br	 />
-                <div class="subtit3">Confirmación de lote</div>    
+                    <td align="center" class="subtit4">$<? echo $neto; ?></td>
+                </tr>
+            </table>
+            <br	 /><br	 />
+            <div class="subtit3">Confirmación de lote</div>    
 
-                <br />
+            <br />
 
-                <div class="separador2"></div>
-
-
-
-                <table width="100%" border="0" cellspacing="2" cellpadding="2">
-                    <tr>
-                        <td width="33%" align="center" class="subtit4"><span>Sello</span></td>
-                        <td width="33%" align="center" class="subtit4"><span>Firma</span></td>
-                        <td width="34%" align="center" class="subtit4"><span>Aclaración</span></td>
-                    </tr>
-                </table>
-                <br />
-                <br />
-                <!--Vista preliminar de la caratula-->
-
-                <table align="center" width="70%" border="0" cellspacing="0" cellpadding="0">
-
-                    <tr>
+            <div class="separador2"></div>
 
 
 
-                        <td align="right" width="72%"><div class="codigoBarra"><img src="codigoBarra.php?NUM=<? echo $codigoBarra ?>&amp;TYP=Code128&amp;IMG=png" /></div></td>
-                    </tr>
-                </table>
-                <br /><?
+            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                <tr>
+                    <td width="33%" align="center" class="subtit4"><span>Sello</span></td>
+                    <td width="33%" align="center" class="subtit4"><span>Firma</span></td>
+                    <td width="34%" align="center" class="subtit4"><span>Aclaración</span></td>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <!--Vista preliminar de la caratula-->
+
+            <table align="center" width="70%" border="0" cellspacing="0" cellpadding="0">
+
+                <tr>
+
+
+
+                    <td align="right" width="72%"><div class="codigoBarra"><img src="codigoBarra.php?NUM=<? echo $codigoBarra ?>&amp;TYP=Code128&amp;IMG=png" /></div></td>
+                </tr>
+            </table>
+            <br /><?
         }
     }
     if (!isset($error) || (isset($error) && $error)) {
-                    ?><div class="subtit2">Agregar</div>
-            <?
-            if ((isset($error) && $error) && isset($msg)) {
-                echo "<div class='errorlist'><ul>$msg</ul></div>";
-            }
-            ?>
+        ?><div class="subtit2">Agregar</div>
+        <?
+        if ((isset($error) && $error) && isset($msg)) {
+            echo "<div class='errorlist'><ul>$msg</ul></div>";
+        }
+        ?>
 
-            <form id="carAdd" name="carAdd" method="post" class="ajax"  action="caratula.php" >
+        <form id="carAdd" name="carAdd" method="post" class="ajax"  action="caratula.php" >
 
-                <table  align="center" width="100%" border="0" cellspacing="2" cellpadding="2">
-                    <tr>
-                        <td align="right" class="ref">Fecha:</td>
-                        <td align="left"><input name="farmacia" type="text" class="bigInput s200" id="farmacia" <? echo "value='" . date("d/m/Y") . "'"; ?> maxlength="30" readonly="readonly" /></td>
-                    </tr>
-                    <tr>
-                        <td width="50%" align="right" class="ref">Obra Social:<?
-            if (isset($bobraSocial) && $bobraSocial) {
-                echo "<span class='requerido'>*</span>";
-            }
-            ?></td>
-                        <td width="50%" align="left"><select title="Obra Social" name="obraSocial" id="obraSocial" class="bigSelect big" ><option value='' selected='selected'>Seleccionar</option>
-                                <?
-                                require_once 'BLL/managerObraSocial.class.php';
-                                $los = managerObraSocial::obtenerTodos();
-                                $hoy = new DateTime();
-                                foreach ($los as $os) {
-                                    $dia = (int) $hoy->format("d");
-                                    if ($os->getAgrupaCaratula() == 0) {
-                                        if ($dia >= $os->getInicio1() && $dia <= $os->getCierre1()) {
-                                            echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
-                                        } else if ($dia >= $os->getInicio2() && $dia <= $os->getCierre2()) {
-                                            echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
-                                        } else if ($os->getCierre2()<$os->getInicio2()) {
-                                            $cierre2= (int) $os->getCierre2()+30;
-                                            $diaHoy = ($dia<=$os->getCierre2()) ? (int) $dia+30 : $dia ;
-                                            if($diaHoy >= $os->getInicio2() && $diaHoy <= $cierre2){
-                                                echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
-                                            }                                            
-                                        }else if($os->getCierre2()>$os->getInicio2()){
-                                            if($dia >= $os->getInicio2() && $dia <= $os->getCierre2()){
-                                                echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
-                                            }
-                                            
-                                        }
+            <table  align="center" width="100%" border="0" cellspacing="2" cellpadding="2">
+                <tr>
+                    <td align="right" class="ref">Fecha:</td>
+                    <td align="left"><input name="farmacia" type="text" class="bigInput s200" id="farmacia" <? echo "value='" . date("d/m/Y") . "'"; ?> maxlength="30" readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td width="50%" align="right" class="ref">Obra Social:<?
+                    if (isset($bobraSocial) && $bobraSocial) {
+                        echo "<span class='requerido'>*</span>";
+                    }
+                    ?></td>
+                    <td width="50%" align="left"><select title="Obra Social" name="obraSocial" id="obraSocial" class="bigSelect big" ><option value='' selected='selected'>Seleccionar</option>
+                        <?
+                        require_once 'BLL/managerObraSocial.class.php';
+                        $los = managerObraSocial::obtenerTodos();
+                        $hoy = new DateTime();
+                        foreach ($los as $os) {
+                            $dia = (int) $hoy->format("d");
+                            if ($os->getAgrupaCaratula() == 0) {
+                                if ($dia >= $os->getInicio1() && $dia <= $os->getCierre1()) {
+                                    echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
+                                } else if ($dia >= $os->getInicio2() && $dia <= $os->getCierre2()) {
+                                    echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
+                                } else if ($os->getCierre2()<$os->getInicio2()) {
+                                    $cierre2= (int) $os->getCierre2()+30;
+                                    $diaHoy = ($dia<=$os->getCierre2()) ? (int) $dia+30 : $dia ;
+                                    if($diaHoy >= $os->getInicio2() && $diaHoy <= $cierre2){
+                                        echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
+                                    }                                            
+                                }else if($os->getCierre2()>$os->getInicio2()){
+                                    if($dia >= $os->getInicio2() && $dia <= $os->getCierre2()){
+                                        echo "<option value='" . $os->getIdObraSocial() . "'>" . $os->getDenominacion() . "</option>";
                                     }
-                                } 
-                                ?>
-                            </select></td>
-                    </tr>
-
-                    <tr>
-                        <td align="right" class="ref">Plan:<?
-                                if (isset($bplan) && $bplan) {
-                                    echo "<span class='requerido'>*</span>";
+                                    
                                 }
-                                ?></td>
-                        <td align="left"><select name="plan" id="plan" size="1" class="bigSelect big"><option value="">Seleccionar</option></select><span id="loader"></span></td>
-                    </tr>
+                            }
+                        } 
+                        ?>
+                    </select></td>
+                </tr>
 
-                    <tr>
-                        <td align="right" class="ref">Período:</td>
-                        <td align="left"><input name="periodo" type="text" class="bigInput s200" id="periodo" maxlength="16" readonly="readonly" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td align="right" class="ref">Folio desde:<?
-                                if (isset($bfolioDesde) && $bfolioDesde) {
-                                    echo "<span class='requerido'>*</span>";
-                                }
-                                ?></td>
-                        <td align="left"><input name="folioDesde" type="text" class="bigInput s200" id="folioDesde" <? if (isset($_POST["folioDesde"]))
-                        echo "value='" . $_POST["folioDesde"] . "'"; ?> maxlength="11" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  /></td>
-                    </tr>
-                    <tr>
-                        <td align="right" class="ref">Folio hasta:<?
-                                        if (isset($bfolioHasta) && $bfolioHasta) {
-                                            echo "<span class='requerido'>*</span>";
-                                        }
-                                ?></td>
-                        <td align="left"><input name="folioHasta" type="text" class="bigInput s200" id="folioHasta" <?
+                <tr>
+                    <td align="right" class="ref">Plan:<?
+                    if (isset($bplan) && $bplan) {
+                        echo "<span class='requerido'>*</span>";
+                    }
+                    ?></td>
+                    <td align="left"><select name="plan" id="plan" size="1" class="bigSelect big"><option value="">Seleccionar</option></select><span id="loader"></span></td>
+                </tr>
+
+                <tr>
+                    <td align="right" class="ref">Período:</td>
+                    <td align="left"><input name="periodo" type="text" class="bigInput s200" id="periodo" maxlength="16" readonly="readonly" value="" /></td>
+                </tr>
+                <tr>
+                    <td align="right" class="ref">Folio desde:<?
+                    if (isset($bfolioDesde) && $bfolioDesde) {
+                        echo "<span class='requerido'>*</span>";
+                    }
+                    ?></td>
+                    <td align="left"><input name="folioDesde" type="text" class="bigInput s200" id="folioDesde" <? if (isset($_POST["folioDesde"]))
+                    echo "value='" . $_POST["folioDesde"] . "'"; ?> maxlength="11" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  /></td>
+                </tr>
+                <tr>
+                    <td align="right" class="ref">Folio hasta:<?
+                    if (isset($bfolioHasta) && $bfolioHasta) {
+                        echo "<span class='requerido'>*</span>";
+                    }
+                    ?></td>
+                    <td align="left"><input name="folioHasta" type="text" class="bigInput s200" id="folioHasta" <?
                     if (isset($_POST["folioHasta"]))
                         echo "value='" . $_POST["folioHasta"] . "'"; else
-                        echo "value=''";
+                    echo "value=''";
                     ?> maxlength="11" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" /></td>
-                    </tr>
+                </tr>
 
 
-                    <tr>
-                        <td align="right" class="ref">Cantidad de recetas:<?
+                <tr>
+                    <td align="right" class="ref">Cantidad de recetas:<?
                     if (isset($bcantRecetas) && $bcantRecetas) {
                         echo "<span class='requerido'>*</span>";
                     }
                     ?></td>
-                        <td align="left"><input name="cantRecetas" type="text" class="bigInput s200" id="cantRecetas" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="11" <?
+                    <td align="left"><input name="cantRecetas" type="text" class="bigInput s200" id="cantRecetas" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="11" <?
                     if (isset($_POST["cantRecetas"])) {
                         echo "value='" . $_POST["cantRecetas"] . "'";
                     }
-                                ?> /></td>
-                    </tr>
-                    <tr>
-                        <td align="right" class="ref">Importe Total:<?
+                    ?> /></td>
+                </tr>
+                <tr>
+                    <td align="right" class="ref">Importe Total:<?
                     if (isset($bimporte) && $bimporte) {
                         echo "<span class='requerido'>*</span>";
                     }
                     ?></td>
 
-                        <td align="left"><input name="importe" type="text" class="bigInput s200" id="importe" maxlength="16" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" <?
+                    <td align="left"><input name="importe" type="text" class="bigInput s200" id="importe" maxlength="16" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" <?
                     if (isset($_POST["importe"])) {
                         echo "value='" . $_POST["importe"] . "'";
                     }
-                                ?>/></td>
+                    ?>/></td>
 
-                    </tr>
-                    <tr class="hide">
-                        <td align="right" class="ref" >Bonificación:<?
+                </tr>
+                <tr class="hide">
+                    <td align="right" class="ref" >Bonificación:<?
                     if (isset($bbon) && $bbon) {
                         echo "<span class='requerido'>*</span>";
                     }
                     ?></td>
 
-                        <td align="left"><input name="bonificacion" type="text"  class="bigInput s200" id="bonificacion"  maxlength="16" <?
+                    <td align="left"><input name="bonificacion" type="text"  class="bigInput s200" id="bonificacion"  maxlength="16" <?
                     if (isset($_POST["bonificacion"])) {
                         echo "value='" . $_POST["bonificacion"] . "'";
-                    }
+                    }else{ echo '0';}
                     ?>/></td>
 
-                    </tr>
+                </tr>
 
-                    <tr>
-                        <td align="right" class="ref">A cargo O.S.:<?
+                <tr>
+                    <td align="right" class="ref">A cargo O.S.:<?
                     if (isset($bcargoEntidad) && $bcargoEntidad) {
                         echo "<span class='requerido'>*</span>";
                     }
                     ?></td>
-                        <td align="left"><input name="cargoEntidad" type="text" class="bigInput s200" id="cargoEntidad" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="16" <?
+                    <td align="left"><input name="cargoEntidad" type="text" class="bigInput s200" id="cargoEntidad" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" maxlength="16" <?
                     if (isset($_POST["cargoEntidad"])) {
                         echo "value='" . $_POST["cargoEntidad"] . "'";
                     }
-                                ?>/></td>
+                    ?>/></td>
 
-                    </tr>
-                    <tr>
-                        <td align="right" class="ref">Neto a cobrar:<?
-        if (isset($bneto) && $bneto) {
-            echo "<span class='requerido'>*</span>";
-        }
-                                ?></td>
-                        <td align="left"><input name="neto" type="text" class="bigInput s200" id="neto" maxlength="16" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  <?
-        if (isset($_POST["neto"])) {
-            echo "value='" . $_POST["neto"] . "'";
-        }
-                                ?>/></td>
+                </tr>
+                <tr>
+                    <td align="right" class="ref">Neto a cobrar:<?
+                    if (isset($bneto) && $bneto) {
+                        echo "<span class='requerido'>*</span>";
+                    }
+                    ?></td>
+                    <td align="left"><input name="neto" type="text" class="bigInput s200" id="neto" maxlength="16" onkeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"  <?
+                    if (isset($_POST["neto"])) {
+                        echo "value='" . $_POST["neto"] . "'";
+                    }
+                    ?>/></td>
 
-                    </tr>
-                </table>
+                </tr>
+            </table>
 
-                <div class="separador"></div>
+            <div class="separador"></div>
 
-                <div align="center">
-                    <input name="enviar" type="hidden" value="enviar" />
-                    <input name="idFar" id="idFar" type="hidden" value="<?= $userAuth->getFarmacia()->getIdFarmacia() ?>" />
-                    <input name="enviar" id="enviar" class="ui-jQuery" type="submit" value="Confirmar" />
-                </div>
-            </form>
-            <script type="text/javascript">$("#obraSocial").focus();</script>    
-            <?
+            <div align="center">
+                <input name="enviar" type="hidden" value="enviar" />
+                <input name="idFar" id="idFar" type="hidden" value="<?= $userAuth->getFarmacia()->getIdFarmacia() ?>" />
+                <input name="enviar" id="enviar" class="ui-jQuery" type="submit" value="Confirmar" />
+            </div>
+        </form>
+        <script type="text/javascript">$("#obraSocial").focus();</script>    
+        <?
         }//fin if($error ==false)
     } else {
 
@@ -498,8 +498,8 @@
                 <input name="siguiente" type="hidden" value="siguiente" />
             </form>
             <script type="text/javascript">$("#matricula").focus();</script>
-        <?
+            <?
+        }
     }
-}
-?>
+    ?>
 </div>
