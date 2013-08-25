@@ -1,4 +1,4 @@
-<? session_start(); //ini_set("display_errors", 1);
+<? session_start(); 
 
 require "BLL/managerUsuario.class.php";
 require 'BLL/managerServicio.class.php';
@@ -69,23 +69,23 @@ if (isset($_GET["act"]) && $_GET['act'] == "logout") { // Destruye la sesion
                             $lastvisit = date(Y . "-" . m . "-" . d, time());
                             $key = md5($iplogin . $u->getUsuario() . time());
                             if (ManagerUsuario::actualizarValores($iplogin, $lastvisit, $key, $u->getIdUser())) {
-                            session_regenerate_id();
-                            if ($_POST["recordarme"]) {
-                                setcookie("colfasj_id", $u->getIdUser(), time() + 86400);
-                                setcookie("colfasj_usuario", $u->getUsuario(), time() + 86400);
-                                setcookie("colfasj_pass", $u->getPass(), time() + 86400);
-                                setcookie("colfasj_key", $key, time() + 86400);
-                                setcookie("colfasj_servicio", $servicio, time() + 86400);
-                            }
-                            $_SESSION["colfasj_id"] = $u->getIdUser();
-                            $_SESSION["colfasj_usuario"] = $u->getUsuario();
-                            $_SESSION["colfasj_pass"] = $u->getPass();
-                            $_SESSION["colfasj_key"] = $key;
-                            $_SESSION['colfasj_servicio']= $servicio;
-                            session_write_close();
-                            header("Location: ".$s->getPath());
-                            exit();
-                        }                            
+                                session_regenerate_id();
+                                if ($_POST["recordarme"]) {
+                                    setcookie("colfasj_id", $u->getIdUser(), time() + 86400);
+                                    setcookie("colfasj_usuario", $u->getUsuario(), time() + 86400);
+                                    setcookie("colfasj_pass", $u->getPass(), time() + 86400);
+                                    setcookie("colfasj_key", $key, time() + 86400);
+                                    setcookie("colfasj_servicio", $servicio, time() + 86400);
+                                }
+                                $_SESSION["colfasj_id"] = $u->getIdUser();
+                                $_SESSION["colfasj_usuario"] = $u->getUsuario();
+                                $_SESSION["colfasj_pass"] = $u->getPass();
+                                $_SESSION["colfasj_key"] = $key;
+                                $_SESSION['colfasj_servicio']= $servicio;
+                                session_write_close();
+                                header("Location: ".$s->getPath());
+                                exit();
+                            }                            
                             
                         }
                         
@@ -99,67 +99,45 @@ if (isset($_GET["act"]) && $_GET['act'] == "logout") { // Destruye la sesion
     }
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Colegio Farmacéutico | Ingreso</title>
-        <link href="css/login.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="css/jquery-ui-1.8.19.custom.css" />
-        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
-        <script type="text/javascript"> 
-            $(document).ready(function () {
-                $( "input:submit, input:button").button();
-                $("#usuario").focus();
-            })
-        </script>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Colegio Farmacéutico | Ingreso</title>
+    <meta charset="utf-8">
+    <html lang="es">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/login.css" rel="stylesheet" media="screen">
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
 
-        <div class="login_wrapper">
-            <div class="login_logo">
+      <form class="form-signin" name="form_login" method="post">
 
-            </div>
-            <div class="login_window">
-                <div class="login_box">
-                    <!--<h4>Iniciar sesión</h4>-->
-                    <form method="post" action="" id="form_login" name="form_login">
+        <h4 class="form-signin-heading">Colegio Farmacéutico de San Juan</h4>
 
-                        <fieldset class="login_fieldset">
+        <input name="usuario" type="text" class="form-control" placeholder="Usuario" autofocus/>
 
-                            <input name="usuario" type="text" class="login_input" id="usuario"  title="Usuario" placeholder="Usuario"/>
+        <input name="pass" type="password" class="form-control" placeholder="Password" />
+        <input name="servicio" type="hidden" value="1" id="servicio" />
 
-                            <input name="pass" type="password" class="login_input" id="pass" title="Contraseña" placeholder="Contraseña"  />
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me" id="recordarme" name="recordarme" checked="checked"> No cerrar sesión
+      </label>
+      <button class="btn btn-lg btn btn-success btn-block" type="submit" name="ingresar">Ingresar</button>
+      <? if (isset($msg)) { ?> <div class="alert text-danger"><?=$msg?></div> <? } ?>
+      <p class="alert text-center"><a href="passRecovery.php" class="">¿Olvidaste tu contraseña?</a></p>
 
-                            
-                            <select name="servicio" id="servicio" class="login_input login_select">
-                                <option value="">Selecciona un servicio</option>
-                                <option value="1" selected="selected">Administración</option>
-                                <option value="2">Salud Pública</option>
-                            </select>
-                            <input type="submit" id="ingresar" name="ingresar" value="Ingresar" class="login_button" />
-
-<? if (isset($msg)) {
-    echo "<span class='error'>$msg</span>";
-} ?>
-
-                            <p align="center">
-                                <input type="checkbox" id="recordarme" name="recordarme" checked="checked" />
-                                <label class="remember">No cerrar sesión</label>
-                            </p><p align="center">
-                                <a href="passRecovery" class="link">¿Olvidaste tu contraseña?</a>
-                            </p>
-                        </fieldset>
-
-
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-
-       
-    </body>
+  </form>
+</div>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
 </html>
