@@ -227,7 +227,7 @@ class cuentaCorrienteBD {
     }
 
     public function getAmountReceive($idFar) {
-        $db = db::getInstance(); // finalmente tenemos visibilidad al objeto db (conexion)
+        $db = db::getInstance(); 
         $consulta = $db->query("SELECT COUNT(operacion) as cantidad from ctacte "
                 . "WHERE codigofarmacia='" . $db->prepare($idFar) . "' and recibido='1'");
         $r = $db->fetch_array($consulta);

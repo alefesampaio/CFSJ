@@ -100,11 +100,10 @@ if (isset($_GET["act"]) && $_GET['act'] == "logout") { // Destruye la sesion
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Colegio Farmacéutico | Ingreso</title>
-    <meta charset="utf-8">
-    <html lang="es">
+    <meta charset="utf-8">    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
