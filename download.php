@@ -16,13 +16,16 @@
                 <hr>
                 <table class="table table-striped" id="example">
                     <thead>
-                        <tr class="tabletit">
-                         <td width="9">Fecha de actualización</td>
-                         <td width="9">Nombre</td>
-                         <td width="9">Tamaño</td>
-                         <td width="73">Descargar</td>
-                     </tr></thead><tbody>
-                     <?  $path="files/";
+                        <tr>
+                            <td>Fecha de actualización</td>
+                            <td>Nombre</td>
+                            <td>Tamaño</td>
+                            <td>Descargar</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <?  
+                     $path="files/";
                      $dir=dir($path);
                      $array = array();
                      if(file_exists($dir->path)){
