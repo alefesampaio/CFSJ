@@ -152,9 +152,7 @@ class cuentaCorrienteBD {
 
     public function getAccountById($id) {
         $db = db::getInstance(); // finalmente tenemos visibilidad al objeto db (conexion)
-        $sql = "select codigofarmacia,quincena,mes,anio,facturado,imputacion,detalle,"
-                . "liquidado,recibido,plan,confirmado,cobrado,operacion from ctacte "
-                . " where operacion='" . $db->prepare($id) . "'";
+        $sql = "SELECT * FROM ctacte WHERE operacion='" . $db->prepare($id) . "'";
         $consulta = $db->query($sql);
         require_once 'DAL/unidadBD.class.php';
         $udb = new unidadBD();

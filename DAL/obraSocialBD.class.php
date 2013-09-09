@@ -34,7 +34,7 @@ class obraSocialBD {
     
     public function getOSById($id){
         $db = db::getInstance(); // finalmente tenemos visibilidad al objeto db (conexion)
-        $sql = "select codigo,denomina,cuit,periodo,dia_1q,dia_2q,inicia_1q,inicia_2q,agrupa_caratula,agrupa_liquida from obrasocial where codigo=$id ";
+        $sql = "select * from obrasocial where codigo=$id ";
         $consulta = $db->query($sql);
         if($db->num_rows($consulta)> 0){
          $r = $db->fetch_array($consulta);

@@ -152,8 +152,7 @@ public function getUserByEmail($email) {
 
     public function getAuthentication($usuario, $pass) {
         $db = db::getInstance(); // finalmente tenemos visibilidad al objeto db (conexion)
-        $sql = "SELECT idUser,usuario,pass,nivelAdmin,email,sexo,fechaNac,fechaReg," .
-        "loginKey,activo,ipLogin,ipReg,ultimaVisita,idFarmacia FROM users WHERE " .
+        $sql = "SELECT * FROM users WHERE " .
         "usuario = '" . $db->prepare($usuario) . "' and pass = '" . $db->prepare($pass) . "'";
         $consulta = $db->query($sql);
         if ($db->num_rows($consulta) > 0) {
@@ -207,8 +206,7 @@ public function getUserByEmail($email) {
 
     public function getUserByIdObj($id) {
         $db = db::getInstance(); // finalmente tenemos visibilidad al objeto db (conexion)
-        $sql = "select idUser,usuario,pass,nivelAdmin,email,sexo,loginKey,fechaNac,idFarmacia,ultimaVisita"
-        . " from users where idUser = '" . $db->prepare($id) . "'";
+        $sql = "SELECT * FROM users WHERE idUser = '" . $db->prepare($id) . "'";
         $consulta = $db->query($sql);
         if ($db->num_rows($consulta) > 0) {
             $u = $db->fetch_array($consulta);
@@ -229,11 +227,6 @@ public function getUserByEmail($email) {
         }
     }
 
-//ready
-
-    public function devolverAlgo() {
-        return "Hola";
-    }
 
     public function showUsers($criterio) {
 
