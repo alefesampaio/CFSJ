@@ -304,9 +304,7 @@ class facturaBD {
 
     public function getInvoiceByIdObj($id, $idFar) {
         $db = db::getInstance(); // finalmente tenemos visibilidad al objeto db (conexion)
-        $sql = "SELECT farmacia,recetas,arancel,arancel_os,obra_soc,quincena," .
-                "mes,anio,folio1,row_id,folio2,operador,fecha,barra,plan,recibido,confirmado,bonificacion,importe_bonificacion,agrupado " .
-                " FROM factura WHERE row_id='" . $db->prepare($id) . "' AND farmacia='" . $db->prepare($idFar) . "'";
+        $sql = "SELECT * FROM factura WHERE row_id='" . $db->prepare($id) . "' AND farmacia='" . $db->prepare($idFar) . "'";
         $consulta = $db->query($sql);
         require_once 'DAL/farmaciaBD.class.php';
         $farm = new farmaciaBD();
