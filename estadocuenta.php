@@ -30,7 +30,7 @@
                     <td>Año</td>
                     <td>Obra Social</td>
                     <td>Plan</td>    
-                    <td>Total facturado ($)</td>
+                    <td>Total presentado ($)</td>
                     <td>Total liquidado ($)</td>
                     <td>Saldo ($)</td>
                     <td>Detalle</td>
@@ -105,6 +105,15 @@
                     }
                     ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th style="text-align:right" colspan="5" rowspan="1"><strong>Total:</strong></th>
+                        <th rowspan="1" colspan="1"></th>
+                        <th rowspan="1" colspan="1"></th>
+                        <th rowspan="1" colspan="1"></th>
+                        <th rowspan="1" colspan="4"></th>
+                    </tr>
+            </tfoot>
             </table>
         </div>
         <script type="text/javascript" src="js/right.js"></script>
@@ -122,26 +131,44 @@
         </script>
         
         <script type="text/javascript" charset="utf-8">
-        oTable = $('#example').dataTable({
-            "bJQueryUI": true,
-            // "bSort": true,
-            "aaSorting": [[ 2, "desc"]],
-            "oLanguage": {
-                "sLengthMenu": "Mostrar _MENU_ registros por página.",
-                "sZeroRecords": "No se encontraron registros.",
-                "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                "sSearch": "Buscar",
-                "sFirst" : "Primera",
-                "sPageFirst" : "Primera",
-                "sLast" : "Última",
-                "sNext" : "Siguiente",
-                "sPageNextDisabled" : "Siguiente",
-                "sPagePrevDisabled" : "Anterior",
-                "sEmptyTable" : "No se encontraron resultados.",
-                "sPrevious" : "Anterior"
-            },
-            "sPaginationType": "full_numbers"
-        });
-        </script>
+        $(document).ready(function() {
+            $('#example').dataTable( {
+                "bJQueryUI": true,
+                "fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+                    var saldo = 0;
+                    var presentado = 0;
+                    var cobrado = 0;
+                    for ( var i=iStart ; i<iEnd ; i++ )
+                    {
+                        saldo += aaData[ aiDisplay[i] ][7]*1;
+                        presentado += aaData[ aiDisplay[i] ][5]*1;
+                        cobrado += aaData[ aiDisplay[i] ][6]*1;
+                    }
+                    var nCells = nRow.getElementsByTagName('th'); 
+                    
+                    nCells[1].innerHTML = '<strong>' + parseInt(presentado * 100 )/100 + '</strong>';
+                    nCells[2].innerHTML = '<strong>' + parseInt(cobrado * 100 )/100 + '</strong>';
+                    nCells[3].innerHTML = '<strong>' + parseInt(saldo * 100 )/100  + '</strong>';
+                },
+                // "bSort": true,
+                "aaSorting": [[ 2, "desc"]],
+                "oLanguage": {
+                    "sLengthMenu": "Mostrar _MENU_ registros por página.",
+                    "sZeroRecords": "No se encontraron registros.",
+                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sSearch": "Buscar",
+                    "sFirst" : "Primera",
+                    "sPageFirst" : "Primera",
+                    "sLast" : "Última",
+                    "sNext" : "Siguiente",
+                    "sPageNextDisabled" : "Siguiente",
+                    "sPagePrevDisabled" : "Anterior",
+                    "sEmptyTable" : "No se encontraron resultados.",
+                    "sPrevious" : "Anterior"
+                },
+                "sPaginationType": "full_numbers"
+                });
+            });
+            </script>

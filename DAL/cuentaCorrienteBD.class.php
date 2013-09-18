@@ -26,8 +26,6 @@ class cuentaCorrienteBD {
                         c.mes,
                         c.anio,
                         c.facturado,
-                        c.imputacion,
-                        c.detalle,
                         c.liquidado,
                         c.recibido,
                         c.plan,
@@ -41,7 +39,7 @@ class cuentaCorrienteBD {
                 INNER JOIN obrasocial as o ON o.codigo = c.obra_social 
                 INNER JOIN planes_os as p ON p.plan = c.plan 
                 WHERE codigofarmacia='" . $db->prepare($params['farmaciaId']) . "' $where ORDER BY $params[criterio]";        
-        $consulta = $db->query($sql);        
+                $consulta = $db->query($sql);        
         if ($db->num_rows($consulta) == 0) return false;
         $lista = array();
         require_once 'Business/unidad.class.php';
@@ -71,7 +69,7 @@ class cuentaCorrienteBD {
                 $new->setObraSocial($os);
                 $new->setConfirmado($r['confirmado']);
                 $new->setRecibido($r['recibido']);
-                $new->setImputacion($r['imputacion']);
+                //$new->setImputacion($r['imputacion']);
                 $new->setFacturado($r['facturado']);
                 $new->setLiquidado($r['liquidado']);
                 $new->setCobrado($r['cobrado']);
