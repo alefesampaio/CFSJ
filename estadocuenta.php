@@ -6,11 +6,15 @@
     <?
     require_once 'funciones/functions.php';
     $criterio = "anio desc, mes desc, operacion, obrasocial desc, quincena asc";
-    $liquidado = ((isset($_GET['act']) and $_GET['act'] == 'liquidacion')) ? true : false ;
+    $liquidado = ((isset($_GET['act']) and $_GET['act'] == 'liquidacion')) ? true : false;
+    $pendiente = ((isset($_GET['act']) and $_GET['act'] == 'pendiente')) ? true : false;
+
     $params = array(
         'criterio' => $criterio,
         'farmaciaId' => $userAuth->Farmacia->getIdFarmacia(),
-        'liquidado' => $liquidado );
+        'liquidado' => $liquidado,
+        'pendiente' => $pendiente,
+        );
     $listado = managerCuentaCorriente::obtenerTodos2($params);
 
     ?>

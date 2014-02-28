@@ -15,7 +15,7 @@ class cuentaCorrienteBD {
     
     public function showAll2($params = array()) {
 
-        $where = ($params['liquidado']) ? ' AND c.cobrado = 1' : ''; 
+        $where = ($params['liquidado']) ? ' AND c.cobrado = 1' : ($params['pendiente'] ? ' AND c.cobrado = 0' : ''); 
         $db = Db::getInstance();
         $sql = "SELECT  c.operacion,
                         c.codigofarmacia,

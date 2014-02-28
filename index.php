@@ -72,6 +72,7 @@
                     <ul id="menu7">
                         <li><a href="estadocuenta.php" target="main">Movimiento</a></li>
                         <li><a href="estadocuenta.php?act=liquidacion" target="main">Liquidado</a></li>
+                        <li><a href="estadocuenta.php?act=pendiente" target="main">Pendiente</a></li>
                     </ul>
                 </div> 
                 <? if ($userAuth->nivelAdmin->getIdAdmin() > 2) { ?>        
