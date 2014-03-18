@@ -154,7 +154,8 @@
                     nCells[2].innerHTML = '<strong>' + parseInt(cobrado * 100 )/100 + '</strong>';
                     nCells[3].innerHTML = '<strong>' + parseInt(saldo * 100 )/100  + '</strong>';
                 },
-                // "bSort": true,
+                "aLengthMenu": [[20, 50, 100 , 200, -1], [20, 50, 100, 200, "Todos"]],
+                "iDisplayLength" : 100,
                 "aaSorting": [[ 2, "desc"]],
                 "oLanguage": {
                     "sLengthMenu": "Mostrar _MENU_ registros por página.",

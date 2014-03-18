@@ -19,6 +19,8 @@ $(document).ready(function() {
         "sScrollX": "100%",
         "sScrollXInner": "110%",
         "bScrollCollapse": false,
+        "aLengthMenu": [[20, 50, 100 , 200, -1], [20, 50, 100, 200, "Todos"]],
+        "iDisplayLength" : 100,
         "oLanguage": {
             "sLengthMenu": "Mostrar _MENU_ registros por página.",
             "sZeroRecords": "No se encontraron registros.",
