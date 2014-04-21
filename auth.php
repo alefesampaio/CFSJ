@@ -4,7 +4,7 @@
    require_once 'BLL/managerServicio.class.php';
 
 session_start();
-
+date_default_timezone_set('America/Argentina/San_Juan');
 header("Content-Type: text/html; charset=utf-8");
 
 if ((!isset($_SESSION['colfasj_id']) || empty($_SESSION['colfasj_id'])) && (!$_COOKIE["colfasj_key"] || empty($_COOKIE["colfasj_key"]))) {

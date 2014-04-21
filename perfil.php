@@ -1,8 +1,5 @@
+<? require_once "auth.php"; ?>
 <script type="text/javascript" src="js/right.js"></script>
-<script type="text/javascript">$("#usuario").focus();</script>
-<? 
-require "auth.php"; 
-?>
 <div id="loaderDiv" class="hide"></div>
         <div class="ui-widget-header ui-corner-all subtit">Mi cuenta</div>
             
@@ -89,7 +86,7 @@ require "auth.php";
   
   <tr>
     <td width="50%" align="right" class="ref">Usuario:<? if (isset($busuario) && $busuario) { echo "<span class='requerido'>*</span>"; } ?></td>
-    <td width="50%" align="left"><input type="text" name="usuario" maxlength="16" id="usuario" class="bigInput s200"  <? echo (isset($_POST['usuario'])) ? "value='".$_POST["usuario"]."'" : "value='".$userDb->getUsuario()."'"; ?> /></td>
+    <td width="50%" align="left"><input type="text" name="usuario" maxlength="16" id="usuario" class="bigInput s200"  <? echo (isset($_POST['usuario'])) ? "value='".$_POST["usuario"]."'" : "value='".$userDb->getUsuario()."'"; ?> autofocus="autofocus" /></td>
   </tr>
   <tr>
     <td width="50%" align="right" class="ref">Email:<? if (isset($bemail) && $bemail) { echo "<span class='requerido'>*</span>"; } ?></td>
@@ -114,5 +111,4 @@ require "auth.php";
 </form> 
 <? }else { echo "<div class=errorlist>No has iniciado sesión.</div>"; }
 } ?>
-</div>
- 
+</div> 

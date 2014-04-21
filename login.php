@@ -1,4 +1,4 @@
-<? session_start(); //ini_set("display_errors", 1);
+<? session_start();
 
 require "BLL/managerUsuario.class.php";
 require 'BLL/managerServicio.class.php';
@@ -16,12 +16,11 @@ if (isset($_GET["act"]) && $_GET['act'] == "logout") { // Destruye la sesion
             setcookie("colfasj_usuario", "", time() - 3600);
             setcookie("colfasj_pass", "", time() - 3600);
             setcookie("colfasj_key", "", time() - 3600);
-            
         }
         header("Location: login");
         exit();
     }
-} else { //creamos la sesion despues de comprobar
+} else {
     $errorForm = false;
     $errorAuth = false;
     if (isset($_SESSION['colfasj_id']) || isset($_COOKIE["colfasj_id"])) {
@@ -66,7 +65,8 @@ if (isset($_GET["act"]) && $_GET['act'] == "logout") { // Destruye la sesion
                         }else{
                             $s = managerServicio::obtenerPorId($servicio);
                             $iplogin = getenv("REMOTE_ADDR");
-                            $lastvisit = date(Y . "-" . m . "-" . d, time());
+                            $today = new Datetime('now', new DateTimeZone('America/Argentina/San_Juan'));
+                            $lastvisit = $today->format('Y-m-d H:i:s');
                             $key = md5($iplogin . $u->getUsuario() . time());
                             if (ManagerUsuario::actualizarValores($iplogin, $lastvisit, $key, $u->getIdUser())) {
                             session_regenerate_id();
