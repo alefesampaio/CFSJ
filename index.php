@@ -13,7 +13,7 @@
     <script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
 </head>
 <body>
-    <? $ban = ($userAuth->Farmacia->getIdFarmacia() != 0) ? true : false; ?>
+    <? $ban = $userAuth->Farmacia->getIdFarmacia() != 0; ?>
     <div id="header">
         <div id="logo"><img src="images/headericonblack.png" alt="" title="" /></div>
         <div class="header-text">Colegio Farmacéutico de San Juan<span id="beta"> beta</span></div>
@@ -62,6 +62,7 @@
                 <h3><a href="#">Carátulas</a></h3>
                 <div>
                     <ul id="menu3">
+                        <li><a href="caratula_mandataria.php">Registrar mandataria</a></li>
                         <li><a href="caratula.php">Registrar por plan</a></li>
                         <li><a href="caratulaSumaria.php">Registrar por Obra Social</a></li>
                         <li><a href="historialCaratulas.php?act=listar" target="main">Listado</a></li>

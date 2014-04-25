@@ -19,7 +19,7 @@ if (!is_null($os)) {
     $meses = meses();
     if ($os->getPeriodo() == 1)
         $q = 3;
-    if ($os->getCierre2() < $os->getInicio2() || ($os->getInicio2()<10)) {
+    if ($os->getCierre2() < $os->getInicio2() or ($os->getInicio2()<10)) {
         if ($today <= $os->getCierre2())
             $mes--;
         if ($mes == 0){
@@ -27,7 +27,7 @@ if (!is_null($os)) {
 			}
             
     }
-    if ($q!=3 && $today >= $os->getInicio1() && $today <= $os->getCierre1()) {
+    if ($q!=3 and $today >= $os->getInicio1() and $today <= $os->getCierre1()) {
         $q = 1;
     }
     if ($q != 3)
