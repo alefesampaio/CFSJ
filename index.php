@@ -1,6 +1,6 @@
 <? require "auth.php"; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Colegio Farmacéutico de San Juan | Panel de administración</title>
@@ -15,24 +15,19 @@
 <body>
     <? $ban = $userAuth->Farmacia->getIdFarmacia() != 0; ?>
     <div id="header">
-        <div id="logo"><img src="images/headericonblack.png" alt="" title="" /></div>
-        <div class="header-text">Colegio Farmacéutico de San Juan<span id="beta"> beta</span></div>
+        <div class="header-text">Colegio Farmacéutico de San Juan</div>
         <div class="welcome">
             <span class="note" id="account_info">Bienvenido, <a href="#" title="Bienvenido"><?= ucfirst($userAuth->getUsuario()) ?></a></span>
             <a class="ui-jQuery btn right" href="updatePass">
-                <span class="ui-icon ui-icon-wrench"></span>
                 Cambiar contraseña
             </a>
             <a class="ui-jQuery btn right" href="perfil">
-                <span class="ui-icon ui-icon-person"></span>
                 Mi Perfil
             </a>
             <a class="ui-jQuery btn" href="login.php?act=logout">
-                <span class="ui-icon ui-icon-power"></span>
                 Salir
             </a>
         </div>
-        <!--            <div id="account_info"> | <a href="login.php?act=logout" class="">Salir</a></div>-->
     </div>
     <!--Begin Contenido -->
     <div id="right">
@@ -47,7 +42,7 @@
                 <div> 
                     <ul id="menu1">
                         <li><a href="main" >Inicio</a></li>
-                        <li><a href="estadisticas" >Estadísticas</a></li>
+                        <!-- <li><a href="estadisticas" >Estadísticas</a></li> -->
                     </ul>
                 </div>
                 <h3><a href="#">Mis archivos</a></h3>
@@ -62,18 +57,18 @@
                 <h3><a href="#">Carátulas</a></h3>
                 <div>
                     <ul id="menu3">
-                        <li><a href="caratula_mandataria.php">Registrar mandataria</a></li>
-                        <li><a href="caratula.php">Registrar por plan</a></li>
-                        <li><a href="caratulaSumaria.php">Registrar por Obra Social</a></li>
-                        <li><a href="historialCaratulas.php?act=listar" target="main">Listado</a></li>
+                        <li><a href="caratula_mandataria.php">Registrar Mandataria</a></li>
+                        <li><a href="caratula.php">Registrar Plan</a></li>
+                        <li><a href="caratulaSumaria.php">Registrar Obra Social</a></li>
+                        <li><a href="historialCaratulas.php?act=listar" target="main">Listar</a></li>
                     </ul>
                 </div> 
                 <h3><a href="#">Estado de cuenta</a></h3>
                 <div>
                     <ul id="menu7">
-                        <li><a href="estadocuenta.php" target="main">Movimiento</a></li>
-                        <li><a href="estadocuenta.php?act=liquidacion" target="main">Liquidado</a></li>
-                        <li><a href="estadocuenta.php?act=pendiente" target="main">Pendiente</a></li>
+                        <li><a href="estadocuenta.php" target="main">Listar Movimientos</a></li>
+                        <li><a href="estadocuenta.php?act=liquidacion" target="main">Listar Liquidación</a></li>
+                        <li><a href="estadocuenta.php?act=pendiente" target="main">Listar Pendientes</a></li>
                     </ul>
                 </div> 
                 <? if ($userAuth->nivelAdmin->getIdAdmin() > 2) { ?>        
@@ -94,21 +89,25 @@
         $("#right").load("main.php");
         $("#accordion div ul li a, #header div.welcome a.right").click(function (e) {
             e.preventDefault();
-            $("#loaderDiv").show();
+            $("#loaderDiv").show();            
              $.ajax({
                     url: $(this).attr('href'),
                     context: document.body,
                     success: function (data) {
                         $('#right').html(data);
-                        $("#loaderDiv").hide();
                     },
                     error: function (err) {
                         console.log(err);
+                    },
+                    always: function(){
+                        $("#loaderDiv").hide();
                     }
                 });
         })
-        $( "#datepicker" ).datepicker( $.datepicker.regional[ "es" ] );	
-        $( "#accordion" ).accordion({ });
+        $( "#datepicker" ).datepicker(
+            $.datepicker.regional[ "es" ]
+            );	
+        $( "#accordion" ).accordion();
         $("#header a.ui-jQuery").button();
         </script>
     </body>

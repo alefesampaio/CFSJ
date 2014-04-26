@@ -12,6 +12,8 @@
  */
 class managerMandataria {
 
+    const TABLE_NAME = 'mandataria2';
+
     public static function obtenerPlanesPorOS($idOS) {
         $db = db::getInstance();
         $sql = "SELECT *,(SELECT denomina FROM obrasocial WHERE codigo = planes_os.obrasoc) as detalle_os
@@ -35,6 +37,29 @@ class managerMandataria {
             $listado[] = $r;
         }
         return $listado;
+    }
+
+    public static function getOne($params = array()) {
+        $default = array(
+            'key' => NULL,
+            'value' => NULL,
+            'extra' => FALSE
+            );
+        extract(array_merge($default, $params));
+        $db = db::getInstance();
+        $listado = array();
+        if($extra){
+            $data = $db->query(
+                            "SELECT * FROM ". self::TABLE_NAME .
+                            " JOIN obrasocial ON mandataria2.obrasocial = obrasocial.codigo
+                            JOIN mandataria1 ON mandataria2.mandataria = mandataria1.codigo
+                            WHERE $key = $value");
+            while($r = $db->fetch_array($data)){
+                $listado[] = $r;
+            }
+            return $listado;
+        }
+        return $db->query("SELECT * FROM ".self::TABLE_NAME." WHERE $key = $value", true);
     }
 
 }

@@ -1,6 +1,5 @@
+<? require "auth.php"; ?>
 <script type="text/javascript" src="js/right.js"></script>
-<script type="text/javascript">$("#oldpass").focus();</script>
-<? require "auth.php";  ?>
 <div id="loaderDiv" class="hide"></div>
         <div class="ui-widget-header ui-corner-all subtit">Mi cuenta</div>
         <div id="main2">
@@ -52,7 +51,7 @@ if((isset($error) &&  $error) || !isset($error)) {
 
   <tr>
     <td width="50%" align="right" class="ref">Contraseña actual:<? if (isset($boldpass) && $boldpass) { echo "<span class='requerido'>*</span>"; } ?></td>
-    <td width="50%" align="left"><input name="oldpass" type="password" id="oldpass" <? if (isset($_POST["oldpass"])) { echo "value='".$_POST["oldpass"]."'"; }?> maxlength="32" class="bigInput s200" /></td>
+    <td width="50%" align="left"><input name="oldpass" autofocus="autofocus" type="password" id="oldpass" <? if (isset($_POST["oldpass"])) { echo "value='".$_POST["oldpass"]."'"; }?> maxlength="32" class="bigInput s200" /></td>
   </tr>
  <tr>
     <td width="50%" align="right" class="ref">Nueva contraseña:<? if (isset($bpass) && $bpass) { echo "<span class='requerido'>*</span>"; } ?></td>
