@@ -8,7 +8,7 @@ $listado = managerMandataria::getOne(array(
   'extra' => TRUE
   ));
 
-if(!empty($listado)){ 
+if(!empty($listado)){
   $periodo = managerObraSocial::obtenerPeriodo($listado[0]['obrasocial']);
   ?>
 <table align="center" width="100%" border="0" cellspacing="2" cellpadding="2">

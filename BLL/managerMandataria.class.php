@@ -53,7 +53,7 @@ class managerMandataria {
                             "SELECT * FROM ". self::TABLE_NAME .
                             " JOIN obrasocial ON mandataria2.obrasocial = obrasocial.codigo
                             JOIN mandataria1 ON mandataria2.mandataria = mandataria1.codigo
-                            WHERE $key = $value");
+                            WHERE ".self::TABLE_NAME.".$key = $value");
             while($r = $db->fetch_array($data)){
                 $listado[] = $r;
             }

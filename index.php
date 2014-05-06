@@ -57,9 +57,9 @@
                 <h3><a href="#">Carátulas</a></h3>
                 <div>
                     <ul id="menu3">
-                        <li><a href="caratula_mandataria.php">Registrar Mandataria</a></li>
                         <li><a href="caratula.php">Registrar Plan</a></li>
                         <li><a href="caratulaSumaria.php">Registrar Obra Social</a></li>
+                        <li><a href="caratula_mandataria.php">Registrar SUP</a></li>                
                         <li><a href="historialCaratulas.php?act=listar" target="main">Listar</a></li>
                     </ul>
                 </div> 

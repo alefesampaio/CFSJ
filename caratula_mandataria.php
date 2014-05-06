@@ -33,7 +33,6 @@
                         $_SESSION['anio'])) {
                         $error = true;
                         $bperiodo = true;
-                        break;
                 }
                 if (isset($bperiodo) && $bperiodo)
                     $msg = "<li>El período que intentas registrar, ya ha sido registrado.</li>";
@@ -133,7 +132,7 @@
                         <td  class="data4" align="left"><? echo $periodo; ?></td>
                     </tr>
                     <tr>
-                        <td width="50%" align="left" class="subtit4">Mandataria:</td>
+                        <td width="50%" align="left" class="subtit4">Sistema Único de Prestaciones (SUP):</td>
                         <td width="50%"  class="data4" align="left"><? echo $os_mandataria[0]['detalle']; ?>
                         </td>
                     </tr>
@@ -152,7 +151,7 @@
                 <table width="70%" border="1" align="center" cellpadding="0" cellspacing="0" class="preliminar">
                     <tr>
                         <td align="center" class="subtit4">Total de recetas:</td>
-                        <td align="center" class="subtit4">A cargo entidad:</td>
+                        <td align="center" class="subtit4">A cargo de entidades:</td>
                     </tr>
                     <tr>
                         <td align="center"  class="data4"><?=$recetas?></td>
@@ -228,7 +227,6 @@
 
                 <div align="center">
                     <input name="enviar" type="hidden" value="enviar" />
-                    <input type="hidden" id="grillaPlanes" name="grillaPlanes" />
                     <input name="idFar" id="idFar" type="hidden" value="<?= $userAuth->getFarmacia()->getIdFarmacia() ?>" />
                     <input name="enviar" id="enviar" class="ui-jQuery" type="submit" value="Confirmar" />
                 </div>
@@ -275,7 +273,7 @@
                 echo "<div class='errorlist'><ul>$msj</ul></div>";
             }
             ?>
-            <form action="caratulaSumaria.php" method="post" name="dt_mat" id="dt_mat" class="ajax">
+            <form action="caratula_mandataria.php" method="post" name="dt_mat" id="dt_mat" class="ajax">
                 <table width="100%" cellpadding="2" cellspacing="2" border="0">
                     <tr>
                         <td width="50%" align="right" class="ref">Matrícula DT:</td>

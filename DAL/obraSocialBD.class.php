@@ -17,7 +17,7 @@ class obraSocialBD {
         $db =  Db::getInstance();
         $cr = "denomina";
       try{
-        $consulta = $db->query("SELECT codigo FROM obrasocial ORDER BY $cr");
+        $consulta = $db->query("SELECT codigo FROM obrasocial WHERE obrasocial.mandataria IS NULL ORDER BY $cr");
         $lista = array();
       while ($r = $db->fetch_array($consulta)) {
             $os = $this->getOSById($r['codigo']);
