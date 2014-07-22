@@ -28,6 +28,32 @@ class managerMandataria {
         return $listado;
     }
 
+    public static function abrenHoy() {
+        $db = db::getInstance();
+        $dia = new Datetime();
+
+        $sql = "SELECT * FROM mandataria1 WHERE dia_1q = " . $dia->format('d');
+        $listado = array();
+        $consulta = $db->query($sql);
+        while($r = $db->fetch_array($consulta)){
+            $listado[] = $r;
+        }
+        return $listado;
+    }
+
+    public static function cierranHoy() {
+        $db = db::getInstance();
+        $dia = new Datetime();
+
+        $sql = "SELECT * FROM mandataria1 WHERE dia_2q = " . $dia->format('d');
+        $listado = array();
+        $consulta = $db->query($sql);
+        while($r = $db->fetch_array($consulta)){
+            $listado[] = $r;
+        }
+        return $listado;
+    }
+
     public static function obtenerTodos(){
         $db = db::getInstance();
         $sql = "SELECT * FROM mandataria1";

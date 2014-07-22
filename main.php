@@ -4,6 +4,7 @@ require_once 'funciones/functions.php';
 require_once 'BLL/managerObraSocial.class.php';
 require_once 'BLL/managerCuentaCorriente.class.php';
 require_once 'BLL/managerFactura.class.php';
+require_once 'BLL/managerMandataria.class.php';
 ?>
 <script type="text/javascript" src="js/right.js"></script>
 <script type="text/javascript">$("#mensaje").focus();</script>
@@ -39,23 +40,35 @@ require_once 'BLL/managerFactura.class.php';
                                             $hoy = new DateTime();
                                             $dia = $dia = (int) $hoy->format("d");
                                             $listos = managerObraSocial::obtenerPorDiaApertura($dia);
-                                            echo (count($listos) == 0) ? "<em>Ninguna.</em>" : "";
                                             ?>
                                             <ul><?
                                             foreach ($listos as $os) {
                                                 echo "<li>" . $os->getDenominacion() . "</li>";
                                             }
+                                            $man = managerMandataria::abrenHoy();
+                                            if(!empty($man)){
+                                                foreach ($man as $m) {
+                                                    echo "<li>" . $m['detalle'] . "</li>";       
+                                                }
+                                            }
+                                            echo (count($listos) == 0 and count($man) == 0) ? "<em>Ninguna.</em>" : "";
                                             ?></ul></div>
                                             <div class="inner-column">                        
                                                 <p><strong>Cierran hoy</strong></p>
                                                 <?
                                                 $listos = managerObraSocial::obtenerPorDiaCierre($dia);
-                                                echo (count($listos) == 0) ? "<em>Ninguna.</em>" : "";
                                                 ?>
                                                 <ul><?
                                                 foreach ($listos as $os) {
                                                     echo "<li>" . ucfirst(strtolower($os->getDenominacion())) . "</li>";
                                                 }
+                                                $man = managerMandataria::cierranHoy();
+                                                if(!empty($man)){
+                                                    foreach ($man as $m) {
+                                                        echo "<li>" . $m['detalle'] . "</li>";       
+                                                    }
+                                                }
+                                                echo (count($listos) == 0 and count($man) == 0) ? "<em>Ninguna.</em>" : "";
                                                 ?></ul></div></div>
                                             </div>
 
