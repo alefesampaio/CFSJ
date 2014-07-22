@@ -210,8 +210,13 @@
                                 <?
                                 require_once 'BLL/managerMandataria.class.php';
                                 $los = managerMandataria::obtenerTodos();
+
+                                $today = new Datetime();
+                                $dia = $today->format('d');
                                 foreach ($los as $os) {
-                                    echo "<option value='". $os['codigo'] . "'>" . $os['detalle'] . "</option>";
+                                    if ($dia >= $os['dia_1q'] and $dia <= $os['dia_2q']) {
+                                        echo "<option value='". $os['codigo'] . "'>" . $os['detalle'] . "</option>";
+                                    }
                                 }
                                 ?>
                             </select></td>
@@ -233,7 +238,7 @@
             </form>
             <script type="text/javascript">$("#obraSocial").focus();</script>    
             <?
-        }//fin if($error ==false)
+        }
     } else {
 
         if (isset($_POST['siguiente'])) {

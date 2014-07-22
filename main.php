@@ -30,7 +30,7 @@ require_once 'BLL/managerFactura.class.php';
                                     </div>
                                 </div>
                                 <div class="column">
-                                    <div class="ui-widget-header ui-corner-all section-header">Obras Sociales</div>
+                                    <div class="ui-widget-header ui-corner-all section-header">Obras Sociales y SUP</div>
                                     <div class="section-content">
                                         <div class="inner-column"> 
                                             <p><strong>Abren hoy</strong></p>
