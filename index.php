@@ -59,8 +59,9 @@
                     <ul id="menu3">
                         <li><a href="caratula.php">Registrar Plan</a></li>
                         <li><a href="caratulaSumaria.php">Registrar Obra Social</a></li>
-                        <li><a href="caratula_mandataria.php">Registrar SUP</a></li>                
-                        <li><a href="historialCaratulas.php?act=listar" target="main">Listar</a></li>
+                        <li><a href="historialCaratulas.php?act=listar" target="main">Listar </a></li>
+                        <li><a href="caratula_mandataria.php">Registrar SUP</a></li>
+                        <li><a href="historial_mandatarias.php?act=listar" target="main">Listar</a></li>
                     </ul>
                 </div> 
                 <h3><a href="#">Estado de cuenta</a></h3>

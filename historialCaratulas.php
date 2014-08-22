@@ -53,7 +53,7 @@ require_once 'funciones/functions.php';
         if (isset($_GET['op']) && $_GET['op'] == 'eliminar') {
             if (isset($_GET['id']) && $_GET['id'] != "") {
                 $codigoBarra = preparar($_GET['id']);
-                //var_dump($codigoBarra);
+
                 if (managerFactura::obtenerFacturaPorCodigoBarraBool($codigoBarra)) {
                     $facturasdb = managerFactura::obtenerFacturaPorCodigoBarraObj($codigoBarra, $userAuth->Farmacia->getIdFarmacia());
 

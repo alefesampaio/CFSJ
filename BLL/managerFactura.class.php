@@ -106,6 +106,12 @@ class managerFactura {
         return $fdb->deleteInvoice($codigoBarra, $idFar);
     }
 
+    public static function borrarMandataria($barra, $idFar) {
+        $db = Db::getInstance();
+        $sql = "DELETE FROM factura_mandataria WHERE barra=$barra AND farmacia=$idFar";
+        return $db->query($sql);
+    }
+
     public static function generarTFacturacion(factura $factura) {
         $fdb = new facturaBD();
         return $fdb->generateTInvoice2($caratula);
@@ -119,6 +125,23 @@ class managerFactura {
     public static function obtenerTodos2($criterio, $idFar) {
         $fdb = new facturaBD();
         return $fdb->showFacturas2($criterio, $idFar);
+    }
+
+    public static function obtenerMandatarias($criterio, $idFar){
+      $db = Db::getInstance();
+      $cr = $db->prepare($criterio);
+      $sql = "SELECT f.*,u.detalle as unidad_detalle,m.detalle as mandataria_detalle
+      FROM factura_mandataria as f
+      JOIN unidadperiodo as u
+      ON f.quincena = u.idUnidad
+      JOIN mandataria1 as m
+      ON m.codigo = f.mandataria
+      WHERE farmacia = $idFar AND f.colfanet = 0 GROUP BY f.barra ORDER BY $cr";
+      $consulta = $db->query($sql);
+      while ($r = $db->fetch_array($consulta)) {
+        $data[] = $r;
+      }
+      return $data;
     }
 
     public static function obtenerFacturaPorIdBool($id) {
